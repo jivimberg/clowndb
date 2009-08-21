@@ -1,6 +1,5 @@
 package control;
 
-//putooooo
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -10,10 +9,14 @@ import javax.swing.JTextField;
 import model.Model;
 import view.AddClothDialog;
 import view.ChangePasswordDialog;
+import view.LoginFrame;
+import view.MainFrame;
 
 public class ActionManager {
 
 	private Model model;
+	private MainFrame mainFrame;
+	private LoginFrame loginFrame;
 	private AbstractAction checkLogin;
 	private AddItem addItem;
 	private AbstractAction showAddItemDialog;
@@ -22,9 +25,15 @@ public class ActionManager {
 	private AbstractAction removeUser;
 	private AbstractAction showChangePasswordDialog;
 	private ChangePassword changePassword;
+	private AbstractAction search;
 	
-	public ActionManager(Model model) {
-		this.model = model;
+	public ActionManager() {
+		this.model = new Model();
+		this.mainFrame = new MainFrame(this);
+		this.loginFrame = new LoginFrame(this);
+		model.addModelListener(mainFrame);
+		model.addModelListener(loginFrame);
+		model.loadClothDatabase();
 	}
 	
 	public AbstractAction getCheckLogin(JTextField username, JPasswordField password){
@@ -92,5 +101,22 @@ public class ActionManager {
 		}
 		changePassword.setDialog(dialog);
 		return changePassword;
+	}
+	
+	public Action getSearch() {
+		if(search == null){
+			search = new Search("Buscar Producto ", null, 
+					"Buscar Producto ", 0, model, this);
+		}
+		return search;
+	}
+	
+	public MainFrame getMainFrame() {
+		return mainFrame;
+	}
+
+	
+	public static void main(String args[]){
+		ActionManager am = new ActionManager();
 	}
 }

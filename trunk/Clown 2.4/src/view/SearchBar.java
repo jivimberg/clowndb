@@ -7,6 +7,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import control.ActionManager;
+
 @SuppressWarnings("serial")
 public class SearchBar extends JPanel{
 	
@@ -15,8 +17,10 @@ public class SearchBar extends JPanel{
 	private JRadioButton description;
 	private ButtonGroup buttonGroup;
 	private JButton searchButton;
+	private ActionManager am;
 	
-	public SearchBar(){
+	public SearchBar(ActionManager am){
+		this.am = am;
 		addComponents();
 	}
 	
@@ -30,6 +34,7 @@ public class SearchBar extends JPanel{
 		buttonGroup.add(number);
 		buttonGroup.add(description);
 		searchButton = new JButton();
+		searchButton.setAction(am.getSearch());
 		add(number);
 		add(description);
 		add(searchButton);

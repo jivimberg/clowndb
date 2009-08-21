@@ -33,7 +33,7 @@ public class MainFrame extends JFrame implements ModelListener{
 		panel1.add(toolBar,BorderLayout.NORTH);
 		JPanel panel2 = new JPanel(new BorderLayout());
 		panel1.add(panel2);
-		searchBar = new SearchBar();
+		searchBar = new SearchBar(am);
 		panel2.add(searchBar, BorderLayout.NORTH);
 		previewPanel = new PreviewPanel();
 		previewPanel.setBorder(new TitledBorder("Vista Previa"));
