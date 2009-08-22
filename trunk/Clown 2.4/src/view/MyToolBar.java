@@ -29,6 +29,7 @@ public class MyToolBar extends JToolBar {
 		/*JButton provider = new JButton();
 		provider.setAction(am.getAddProvider());
 		provider.setText(provider.getText());
-		add(provider);*/	
+		add(provider);*/
+		setFloatable(false);
 	}
 }
