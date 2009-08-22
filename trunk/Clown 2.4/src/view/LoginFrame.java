@@ -76,4 +76,6 @@ public class LoginFrame extends JFrame implements ModelListener{
 
 	public void loadCloth(Cloth cloth) {}
 
+	public void removeCloth(Cloth cloth) {}
+
 }

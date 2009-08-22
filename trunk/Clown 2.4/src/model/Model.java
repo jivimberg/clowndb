@@ -25,12 +25,14 @@ public class Model{
 	private ArrayList<Provider> providers;
 	private User activeUser;
 	private ArrayList<ModelListener> listeners;
+	private ArrayList<Cloth> sold;
 
 	public Model(){
 		this.users = new ArrayList<User>();
 		this.providers = new ArrayList<Provider>();
 		this.listeners = new ArrayList<ModelListener>();
 		this.clothes = new ArrayList<Cloth>();
+		this.sold = new ArrayList<Cloth>();
 	}
 	
 	public ArrayList<User> getUsers() {
@@ -102,6 +104,21 @@ public class Model{
 			listener.loadCloth(newCloth);
 		}
 		persistClothes();
+	}
+	
+	public void removeItem(Cloth cloth) {
+		clothes.remove(cloth);
+		persistClothes();
+		for(ModelListener listener : listeners){
+			listener.removeCloth(cloth);
+		}
+		persistClothes();
+	}
+	
+	public void removeItem(List<Cloth> selectedClothes) {
+		for (Cloth cloth : selectedClothes) {
+			removeItem(cloth);
+		}
 	}
 	
 	public void addProvider(Provider provider) {
@@ -290,5 +307,21 @@ public class Model{
 			}
 		}
 		return selectedClothes;
+	}
+
+	public void sell(List<Cloth> selectedClothes) {
+		for (Cloth cloth : selectedClothes) {
+			sell(cloth);
+		}
+		
+	}
+
+	private void sell(Cloth cloth) {
+		sold.add(cloth);
+		removeItem(cloth);
+//		for(ModelListener listener : listeners){
+//			listener.removeCloth(newCloth);
+//		}
+//		persistSold();
 	}
 }

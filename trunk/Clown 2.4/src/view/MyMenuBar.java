@@ -28,16 +28,18 @@ public class MyMenuBar extends JMenuBar {
 		file = new JMenu("Archivo");
 		add(file);
 		file.add(am.getShowAddItemDialog());
-		file.add(am.getAddProvider());
 		
 		/*----EDITAR----*/
 		edit = new JMenu("Editar");
 		add(edit);
 		edit.add(am.getShowChangePasswordDialog());
 		if(user.getType().equals(UserType.ADMIN)){
+			file.add(am.getRemoveItem());
+			
 			edit.addSeparator();
 			edit.add(am.getAddUser());
 			edit.add(am.getRemoveUser());
 		}
+		file.add(am.getAddProvider());
 	}
 }

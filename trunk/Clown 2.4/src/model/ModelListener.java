@@ -11,4 +11,6 @@ public interface ModelListener {
 	public void loadClothes(ArrayList<Cloth> clothes);
 	
 	public void loadCloth(Cloth cloth);
+	
+	public void removeCloth(Cloth cloth);
 }
