@@ -20,6 +20,7 @@ public class ActionManager {
 	private LoginFrame loginFrame;
 	private AbstractAction checkLogin;
 	private AddItem addItem;
+	private AbstractAction removeItem;
 	private AbstractAction showAddItemDialog;
 	private AbstractAction addProvider;
 	private AbstractAction addUser;
@@ -62,6 +63,14 @@ public class ActionManager {
 		}
 		addItem.setDialog(dialog);
 		return addItem;
+	}
+	
+	public AbstractAction getRemoveItem() {
+		if(removeItem == null){
+			removeItem = new RemoveItem("Remover Item ",  null, 
+					"Remover Item ", 0, model, this);
+		}
+		return removeItem;
 	}
 	
 	public Action getAddProvider() {

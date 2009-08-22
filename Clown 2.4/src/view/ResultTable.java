@@ -50,9 +50,19 @@ public class ResultTable extends JTable{
 		int[] selected = getSelectedRows();
 		String[] selectedObjectsCodes = new String[getSelectedRowCount()];
 		for (int i = 0; i < selected.length; i++) {
-			selectedObjectsCodes[i] = (String) tableModel.getValueAt(selected[i], 0);
+			selectedObjectsCodes[i] = (String) tableModel.getValueAt(selected[i], 1);
 		}
 		return selectedObjectsCodes;
+	}
+
+	public void remove(Cloth cloth) {
+		for (int i = 0; i < tableModel.getRowCount(); i++) {
+			if(cloth.getCode().equalsIgnoreCase((String) tableModel.getValueAt(i, 1))){
+				tableModel.removeRow(i);
+				break;
+			}
+		}
+		
 	}
 }
 	
