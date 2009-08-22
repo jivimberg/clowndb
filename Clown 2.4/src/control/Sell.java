@@ -1,0 +1,27 @@
+package control;
+
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+
+import model.Cloth;
+import model.Model;
+
+public class Sell extends GenericAction {
+
+	private ActionManager am;
+
+	public Sell(String text, ImageIcon icon, String desc, Integer mnemonic,
+			Model model, ActionManager am) {
+		super(text, icon, desc, mnemonic, model);
+		this.am = am;
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		List<Cloth> toSell = am.getMainFrame().getResult().getSelected();
+		
+	}
+
+}

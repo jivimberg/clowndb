@@ -26,6 +26,7 @@ public class ActionManager {
 	private AbstractAction showChangePasswordDialog;
 	private ChangePassword changePassword;
 	private AbstractAction search;
+	private AbstractAction sell;
 	
 	public ActionManager() {
 		this.model = new Model();
@@ -109,6 +110,14 @@ public class ActionManager {
 					"Buscar Producto ", 0, model, this);
 		}
 		return search;
+	}
+	
+	public Action getSell() {
+		if(sell == null){
+			sell = new Sell("Vender Producto ", null, 
+					"Vender Producto ", 0, model, this);
+		}
+		return sell;
 	}
 	
 	public MainFrame getMainFrame() {
