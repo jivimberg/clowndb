@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -43,6 +44,15 @@ public class ResultTable extends JTable{
 		for (int i = 0; i < tableModel.getRowCount(); i++) {
 			tableModel.removeRow(i);
 		}
+	}
+
+	public ArrayList<Cloth> getSelected() {
+		int[] selected = getSelectedRows();
+		for (int i = 0; i < selected.length; i++) {
+			Object aux = selected[i];
+			//La idea era que devuelva un arreglo con la ropa Seleccionada pero al no tener acceso al model nose puede
+		}
+		return null;
 	}
 }
 	
