@@ -46,13 +46,13 @@ public class ResultTable extends JTable{
 		}
 	}
 
-	public ArrayList<Cloth> getSelected() {
+	public String[] getSelectedObjects() {
 		int[] selected = getSelectedRows();
+		String[] selectedObjectsCodes = new String[getSelectedRowCount()];
 		for (int i = 0; i < selected.length; i++) {
-			Object aux = selected[i];
-			//La idea era que devuelva un arreglo con la ropa Seleccionada pero al no tener acceso al model nose puede
+			selectedObjectsCodes[i] = (String) tableModel.getValueAt(selected[i], 0);
 		}
-		return null;
+		return selectedObjectsCodes;
 	}
 }
 	
