@@ -278,4 +278,17 @@ public class Model{
 		activeUser.setPassword(password);
 		persistUsers();
 	}
+
+	public List<Cloth> getClothes(String[] selectedObjectsCodes) {
+		List<Cloth> selectedClothes = new ArrayList<Cloth>();
+		for (int i = 0; i < selectedObjectsCodes.length; i++) {
+			for(Cloth cloth : clothes){
+				if(cloth.getCode().equalsIgnoreCase(selectedObjectsCodes[i])){
+					selectedClothes.add(cloth);
+					break;
+				}
+			}
+		}
+		return selectedClothes;
+	}
 }
