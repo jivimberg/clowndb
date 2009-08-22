@@ -41,7 +41,7 @@ public class ResultTable extends JTable{
 	}
 	
 	public void empty(){
-		for (int i = 0; i < tableModel.getRowCount(); i++) {
+		for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 			tableModel.removeRow(i);
 		}
 	}

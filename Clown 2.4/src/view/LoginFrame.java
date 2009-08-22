@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,7 +36,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 		JPanel panel1 = new JPanel();
 		add(panel1);
 		
-		JLabel welcome = new JLabel("Bienvenido a Clown Baby v2.4");
+		JLabel welcome = new JLabel(new ImageIcon(getClass().getResource("/Images/Clown.png")));
 		Font font = new Font("Curlz MT", Font.PLAIN, 22);
 		panel1.add(welcome);
 		welcome.setFont(font);
@@ -56,7 +57,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 		loginButton.setAction(am.getCheckLogin(username, password));
 		panel1.add(loginButton);
 		
-		setSize(270, 195);
+		setSize(239, 265);
         setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
