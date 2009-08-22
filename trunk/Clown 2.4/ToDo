@@ -4,8 +4,13 @@ To Do
 
 1* Venta
 1* Terminar ABM Producto (con borrar producto y reducir cantidad)
-1* Busqueda
 1* Información detallada del producto
 2* Campos obligatorios (supongo que se refiere a la alta de items)
 2* Exportar a Excel
 2* BD Backup
+
+
+Lo que hice el viernes 22/08 a la noche:
+
+Arregle el search, tambien busca por color
+Y cambie un par de pavadas

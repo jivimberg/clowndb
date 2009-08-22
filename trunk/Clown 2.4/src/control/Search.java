@@ -38,7 +38,7 @@ public class Search extends GenericAction {
 			}
 		}else{
 			for(Cloth cloth : model.getClothes()){
-				if(cloth.getCode().contains(toSearch) || cloth.getDescription().contains(toSearch)){
+				if(cloth.getCode().contains(toSearch) || cloth.getDescription().contains(toSearch) ||cloth.getColor().toString().contains(toSearch)){
 					clothes.add(cloth);
 				}
 			}
