@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -48,7 +49,7 @@ public class AddClothDialog extends JDialog{
 	}
 
 	private void addContent(ActionManager am) {
-		JPanel panel1 = new JPanel(new GridLayout(10,0));
+		JPanel panel1 = new JPanel(new GridLayout(20,0));
 		panel1.setBorder(new TitledBorder("Agregar Producto"));
 		getContentPane().add(panel1);
 		
@@ -105,7 +106,7 @@ public class AddClothDialog extends JDialog{
 		cancelButton.setAction(exit);
 		panel1.add(cancelButton);
 		
-		setSize(300,380);
+		setSize(300,500);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
@@ -164,7 +165,7 @@ public class AddClothDialog extends JDialog{
 		}
 	};
 	
-	private AbstractAction addImageAction = new AbstractAction("Agregar Imagen"){
+	private AbstractAction addImageAction = new AbstractAction("Agregar Imagen", new ImageIcon(getClass().getResource("/Images/Picture.png"))){
 		public void actionPerformed(ActionEvent e){
 			JFileChooser fc = new JFileChooser();
 			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
