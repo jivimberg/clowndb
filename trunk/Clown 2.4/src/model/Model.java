@@ -129,6 +129,14 @@ public class Model{
 		}
 	}
 	
+	public void removeProvider(Provider provider){
+		providers.remove(provider);
+		persistProviders();
+		for(ModelListener ml : this.listeners){
+			ml.removeProvider(provider);
+		}
+	}
+	
 	public ArrayList<Provider> getProviders() {
 		return providers;
 	}
@@ -160,7 +168,7 @@ public class Model{
 		
 	}
 	
-	private void persistClothes() {
+	public void persistClothes() {
 		try{
 			Document doc = new Document (clothesToXML());
 			XMLOutputter out= new XMLOutputter();
@@ -196,9 +204,9 @@ public class Model{
 		return element;
 	}
 	
-	public void productsToXLS(){
+	public void productsToXLS(String path){
 		File f1 = new File("Productos.xml");
-		File f2 = new File("Productos.xls");
+		File f2 = new File(path + "/Productos.xls");
 		
 		try {
 			InputStream in = new FileInputStream(f1);
@@ -213,7 +221,25 @@ public class Model{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void productsFromXLS(File file){
+		File f2 = new File("Productos.xml");
 		
+		try {
+			InputStream in = new FileInputStream(file);
+			OutputStream out = new FileOutputStream(f2); 
+			
+			int c;
+		    while ((c = in.read()) != -1){
+		      out.write(c);
+		    }
+		    in.close();
+		    out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		loadClothDatabase();
 	}
 	
 	private void usersToRAM() {

@@ -99,4 +99,9 @@ public class MainFrame extends JFrame implements ModelListener{
 	public void addProvider(Provider provider) {
 		addItemDialog.addProvider(provider);
 	}
+	
+	public void removeProvider(Provider provider) {
+		addItemDialog.removeProvider(provider);
+	}
+	
 }
