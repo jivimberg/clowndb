@@ -29,6 +29,7 @@ public class ActionManager {
 	private ChangePassword changePassword;
 	private AbstractAction search;
 	private AbstractAction sell;
+	private AbstractAction productsToXLS;
 	
 	public ActionManager() {
 		this.model = new Model();
@@ -128,6 +129,14 @@ public class ActionManager {
 					"Vender Producto ", 0, model, this);
 		}
 		return sell;
+	}
+	
+	public Action getProductsToXLS() {
+		if(productsToXLS == null){
+			productsToXLS = new ProductsToXLS("Pasar a Excel ", null, 
+					"Pasar a Excel", 0, model);
+		}
+		return productsToXLS;
 	}
 	
 	public MainFrame getMainFrame() {
