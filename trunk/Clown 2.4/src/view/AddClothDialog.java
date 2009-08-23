@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -41,17 +42,17 @@ public class AddClothDialog extends JDialog implements ModelListener {
 	private JButton cancelButton;
 	private JButton addImageButton;
 	
-	private ArrayList<Provider> providers;
+	private ActionManager am;
 	
 	private String path;
 	
-	public AddClothDialog(ActionManager am, ArrayList<Provider> providers){
-		super();
-		this.providers = providers;
-		addContent(am);
+	public AddClothDialog(ActionManager am, JFrame frame){
+		super(frame);
+		this.am = am;
+		addContent();
 	}
 
-	private void addContent(ActionManager am) {
+	private void addContent() {
 		JPanel panel1 = new JPanel(new GridLayout(20,0));
 		panel1.setBorder(new TitledBorder("Agregar Producto"));
 		getContentPane().add(panel1);
@@ -90,7 +91,7 @@ public class AddClothDialog extends JDialog implements ModelListener {
 		panel1.add(seasson);
 		
 		panel1.add(new JLabel("  Proveedor:"));
-		provider = new JComboBox(providersNamesToArray());
+		provider = new JComboBox();
 		panel1.add(provider);
 		
 		addProvider = new JButton();
@@ -112,14 +113,6 @@ public class AddClothDialog extends JDialog implements ModelListener {
 		setSize(300,500);
 		setLocationRelativeTo(null);
 		setResizable(false);
-	}
-
-	private Object[] providersNamesToArray() {
-		Object[] providersName = new Object[providers.size()];
-		for (int i = 0; i < providersName.length; i++) {
-			providersName[i] = providers.get(i).getName();
-		}
-		return providersName;
 	}
 
 	public String getCode(){
@@ -162,6 +155,15 @@ public class AddClothDialog extends JDialog implements ModelListener {
 		return cancelButton;
 	}
 	
+	public void openWindow(){
+		setVisible(true);
+		code.setText(null);
+		description.setText(null);
+		size.setText(null);
+		price.setText(null);
+		amount.setText(null);
+	}
+	
 	private AbstractAction exit = new AbstractAction("Cancelar"){
 		public void actionPerformed(ActionEvent e){
 			dispose();
@@ -191,6 +193,6 @@ public class AddClothDialog extends JDialog implements ModelListener {
 	public void removeUser() {}
 
 	public void addProvider(Provider provider) {
-		
+		this.provider.addItem(provider.getName());
 	}
 }

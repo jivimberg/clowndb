@@ -13,6 +13,7 @@ import model.ModelListener;
 import model.Provider;
 import model.User;
 import control.ActionManager;
+import control.ShowAddItemDialog;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ModelListener{
@@ -22,6 +23,7 @@ public class MainFrame extends JFrame implements ModelListener{
 	private SearchBar searchBar;
 	private ResultTable result;
 	private PreviewPanel previewPanel;
+	private AddClothDialog addItemDialog;
 
 	public MainFrame(ActionManager am){
 		super("Clown Baby v2.4");
@@ -43,6 +45,9 @@ public class MainFrame extends JFrame implements ModelListener{
 		JScrollPane scrollPane = new JScrollPane(result);
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
+		
+		addItemDialog = new AddClothDialog(am, this);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800,500);
 		setLocationRelativeTo(null);
@@ -86,6 +91,12 @@ public class MainFrame extends JFrame implements ModelListener{
 	public void removeCloth(Cloth cloth) {
 		result.remove(cloth);
 	}
+	
+	public AddClothDialog getAddItemDialog() {
+		return addItemDialog;
+	}
 
-	public void addProvider(Provider provider) {}
+	public void addProvider(Provider provider) {
+		addItemDialog.addProvider(provider);
+	}
 }
