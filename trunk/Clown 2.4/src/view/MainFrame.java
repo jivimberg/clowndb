@@ -10,6 +10,7 @@ import javax.swing.border.TitledBorder;
 
 import model.Cloth;
 import model.ModelListener;
+import model.Provider;
 import model.User;
 import control.ActionManager;
 
@@ -85,4 +86,6 @@ public class MainFrame extends JFrame implements ModelListener{
 	public void removeCloth(Cloth cloth) {
 		result.remove(cloth);
 	}
+
+	public void addProvider(Provider provider) {}
 }

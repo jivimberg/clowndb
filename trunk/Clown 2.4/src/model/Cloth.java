@@ -105,14 +105,14 @@ public class Cloth{
 	public Element toXML(){
 		Element element = new Element("Cloth");
 		Date date = new Date();
-		element.setAttribute("date", date.toString());
-		element.setAttribute("code", code);
-		element.setAttribute("description", description);
-		element.setAttribute("color", color.toString());
-		element.setAttribute("size", size.toString());
-		element.setAttribute("price", price.toString());
-		element.setAttribute("amount", amount.toString());
-		element.setAttribute("seasson", seasson.toString());
+		element.setAttribute("Fecha", date.toString());
+		element.setAttribute("Código", code);
+		element.setAttribute("Descripción", description);
+		element.setAttribute("Color", color.toString());
+		element.setAttribute("Tamaño", size.toString());
+		element.setAttribute("Precio", price.toString());
+		element.setAttribute("Cantidad", amount.toString());
+		element.setAttribute("Temporada", seasson.toString());
 		if(provider != null)
 			element.addContent(provider.toXML());
 		return element;

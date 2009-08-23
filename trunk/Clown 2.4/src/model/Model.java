@@ -2,7 +2,6 @@ package model;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -125,6 +124,9 @@ public class Model{
 	public void addProvider(Provider provider) {
 		providers.add(provider);
 		persistProviders();
+		for(ModelListener ml : this.listeners){
+			ml.addProvider(provider);
+		}
 	}
 	
 	public ArrayList<Provider> getProviders() {
@@ -240,13 +242,13 @@ public class Model{
 			Element clothesElement = doc.getRootElement();
 			List<Element> elements = new ArrayList<Element>(clothesElement.getChildren());
 			for(Element element : elements){
-				String code = element.getAttributeValue("code");
-				String description = element.getAttributeValue("description");
-				ClothColor color = ClothColor.valueOf(element.getAttributeValue("color"));
-				Integer size = Integer.parseInt(element.getAttributeValue("size"));
-				Double price = Double.parseDouble(element.getAttributeValue("price"));
-				Integer amount = Integer.parseInt(element.getAttributeValue("amount"));
-				Seasson seasson = Seasson.valueOf(element.getAttributeValue("seasson"));
+				String code = element.getAttributeValue("Código");
+				String description = element.getAttributeValue("Descripción");
+				ClothColor color = ClothColor.valueOf(element.getAttributeValue("Color"));
+				Integer size = Integer.parseInt(element.getAttributeValue("Tamaño"));
+				Double price = Double.parseDouble(element.getAttributeValue("Precio"));
+				Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
+				Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
 				List<Element> listOfElements = new ArrayList<Element>(clothesElement.getChildren());
 				Provider provider = getProvider(listOfElements.get(0));
 			
@@ -269,7 +271,7 @@ public class Model{
 			Element providerElement = doc.getRootElement();
 			List<Element> elements = new ArrayList<Element>(providerElement.getChildren());
 			for(Element element : elements){
-				String name = element.getAttributeValue("name");
+				String name = element.getAttributeValue("Nombre");
 				Provider provider = new Provider(name);
 				providers.add(provider);
 			}
@@ -279,7 +281,7 @@ public class Model{
 	}
 
 	private Provider getProvider(Element element) {
-		String name = element.getAttributeValue("name");
+		String name = element.getAttributeValue("Nombre");
 		Provider provider = getProvider(name);
 		return provider;
 	}
