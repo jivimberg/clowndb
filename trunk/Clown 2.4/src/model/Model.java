@@ -2,17 +2,18 @@ package model;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
-
 
 import enums.ClothColor;
 import enums.Seasson;
@@ -191,6 +192,26 @@ public class Model{
 			element.addContent(provider.toXML());
 		}
 		return element;
+	}
+	
+	public void productsToXLS(){
+		File f1 = new File("Productos.xml");
+		File f2 = new File("Productos.xls");
+		
+		try {
+			InputStream in = new FileInputStream(f1);
+			OutputStream out = new FileOutputStream(f2); 
+			
+			int c;
+		    while ((c = in.read()) != -1){
+		      out.write(c);
+		    }
+		    in.close();
+		    out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void usersToRAM() {

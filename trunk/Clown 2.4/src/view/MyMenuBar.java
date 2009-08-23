@@ -41,5 +41,6 @@ public class MyMenuBar extends JMenuBar {
 			edit.add(am.getRemoveUser());
 		}
 		file.add(am.getAddProvider());
+		file.add(am.getProductsToXLS());
 	}
 }
