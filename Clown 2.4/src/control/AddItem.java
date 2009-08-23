@@ -30,7 +30,7 @@ public class AddItem extends GenericAction {
 		Double price;
 		
 		String code = dialog.getCode();
-		if(code.equals(null)){
+		if(code.equals("")){
 			JOptionPane.showMessageDialog(null,"No se ha ingresado un código válido"," Error!",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -42,6 +42,10 @@ public class AddItem extends GenericAction {
 		}
 		
 		String description = dialog.getDescription();
+		if(description.equals("")){
+			JOptionPane.showMessageDialog(null,"No se ha ingresado una descripción válida"," Error!",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		
 		ClothColor color = dialog.getColor();
 		

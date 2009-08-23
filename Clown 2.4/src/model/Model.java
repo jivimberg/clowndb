@@ -235,8 +235,8 @@ public class Model{
 	}
 
 	private void clothesToRAM() {
-		providersToRAM();
 		SAXBuilder file = new SAXBuilder();
+		providersToRAM();
 		try {
 			Document doc = file.build (new FileInputStream ("Productos.xml"));
 			Element clothesElement = doc.getRootElement();
@@ -259,7 +259,7 @@ public class Model{
 				listener.loadClothes(clothes);
 			}
 		}catch (Exception exc){
-			exc.printStackTrace();
+//			exc.printStackTrace();
 		}
 		
 	}
@@ -274,6 +274,9 @@ public class Model{
 				String name = element.getAttributeValue("Nombre");
 				Provider provider = new Provider(name);
 				providers.add(provider);
+				for(ModelListener ml : this.listeners){
+					ml.addProvider(provider);
+				}
 			}
 		}catch (Exception exc){
 			exc.printStackTrace();
