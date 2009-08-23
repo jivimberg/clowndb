@@ -26,7 +26,7 @@ import enums.ClothColor;
 import enums.Seasson;
 
 @SuppressWarnings("serial")
-public class AddClothDialog extends JDialog implements ModelListener {
+public class AddClothDialog extends JDialog{
 
 	private JTextField code;
 	private JTextField description;
@@ -182,17 +182,11 @@ public class AddClothDialog extends JDialog implements ModelListener {
 		}
 	};
 
-	public void addUser(User user) {}
-
-	public void loadCloth(Cloth cloth) {}
-
-	public void loadClothes(ArrayList<Cloth> clothes) {}
-
-	public void removeCloth(Cloth cloth) {}
-
-	public void removeUser() {}
-
 	public void addProvider(Provider provider) {
 		this.provider.addItem(provider.getName());
+	}
+	
+	public void removeProvider(Provider provider) {
+		this.provider.removeItem(provider.getName());
 	}
 }

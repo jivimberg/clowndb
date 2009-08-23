@@ -36,11 +36,18 @@ public class MyMenuBar extends JMenuBar {
 		if(user.getType().equals(UserType.ADMIN)){
 			file.add(am.getRemoveItem());
 			
+			file.addSeparator();
+			file.add(am.getAddUser());
+			file.add(am.getRemoveUser());
+			
 			edit.addSeparator();
-			edit.add(am.getAddUser());
-			edit.add(am.getRemoveUser());
+			edit.add(am.getProductsToXLS());
+			edit.add(am.getProductsFromXLS());
 		}
+		file.addSeparator();
 		file.add(am.getAddProvider());
-		file.add(am.getProductsToXLS());
+		if(user.getType().equals(UserType.ADMIN)){
+			file.add(am.getRemoveProvider());
+		}
 	}
 }

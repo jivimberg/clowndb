@@ -15,4 +15,6 @@ public interface ModelListener {
 	public void removeCloth(Cloth cloth);
 	
 	public void addProvider(Provider provider);
+
+	public void removeProvider(Provider provider);
 }

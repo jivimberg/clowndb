@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Usuarios><User date="Sat Aug 22 02:32:45 ART 2009" userName="administrador" password="1234" type="ADMIN" /></Usuarios>
+<Usuarios><User date="Sun Aug 23 16:25:06 ART 2009" userName="administrador" password="1234" type="ADMIN" /><User date="Sun Aug 23 16:25:06 ART 2009" userName="buby" password="1234" type="COMMON_USER" /></Usuarios>

@@ -23,6 +23,7 @@ public class ActionManager {
 	private AbstractAction removeItem;
 	private AbstractAction showAddItemDialog;
 	private AbstractAction addProvider;
+	private AbstractAction removeProvider;
 	private AbstractAction addUser;
 	private AbstractAction removeUser;
 	private AbstractAction showChangePasswordDialog;
@@ -30,6 +31,7 @@ public class ActionManager {
 	private AbstractAction search;
 	private AbstractAction sell;
 	private AbstractAction productsToXLS;
+	private AbstractAction productsFromXLS;
 	
 	public ActionManager() {
 		this.model = new Model();
@@ -51,7 +53,7 @@ public class ActionManager {
 	
 	public AbstractAction getShowAddItemDialog() {
 		if(showAddItemDialog == null){
-			showAddItemDialog = new ShowAddItemDialog("Agregar Producto ", new ImageIcon(getClass().getResource("/Images/Add.png")), 
+			showAddItemDialog = new ShowAddItemDialog("Agregar Producto ", new ImageIcon(getClass().getResource("/Images/Add Product.png")), 
 					"Agregar producto ", 0, model, this);
 		}
 		return showAddItemDialog;
@@ -68,8 +70,8 @@ public class ActionManager {
 	
 	public AbstractAction getRemoveItem() {
 		if(removeItem == null){
-			removeItem = new RemoveItem("Remover Item ",  null, 
-					"Remover Item ", 0, model, this);
+			removeItem = new RemoveItem("Remover Producto ",  new ImageIcon(getClass().getResource("/Images/Remove Product.png")), 
+					"Remover Producto ", 0, model, this);
 		}
 		return removeItem;
 	}
@@ -82,9 +84,17 @@ public class ActionManager {
 		return addProvider;
 	}
 	
+	public Action getRemoveProvider() {
+		if(removeProvider == null){
+			removeProvider = new RemoveProvider("Remover Proveedor ", new ImageIcon(getClass().getResource("/Images/Delete.png")), 
+					"Remover proveedor a la Base de Datos", 0, model);
+		}
+		return removeProvider;
+	}
+	
 	public Action getAddUser() {
 		if(addUser == null){
-			addUser = new AddUser("Agregar Usuario ", new ImageIcon(getClass().getResource("/Images/Profile.png")), 
+			addUser = new AddUser("Agregar Usuario ", new ImageIcon(getClass().getResource("/Images/add User.png")), 
 					"Agregar Usuario", 0, model);
 		}
 		return addUser;
@@ -92,7 +102,7 @@ public class ActionManager {
 	
 	public Action getRemoveUser() {
 		if(removeUser == null){
-			removeUser = new RemoveUser("Eliminar Usuario ", new ImageIcon(getClass().getResource("/Images/Delete.png")), 
+			removeUser = new RemoveUser("Eliminar Usuario ", new ImageIcon(getClass().getResource("/Images/Delete user.jpg")), 
 					"Eliminar usuario", 0, model);
 		}
 		return removeUser;
@@ -100,7 +110,7 @@ public class ActionManager {
 	
 	public Action getShowChangePasswordDialog() {
 		if(showChangePasswordDialog == null){
-			showChangePasswordDialog = new ShowChangePasswordDialog("Cambiar Contraseña ", new ImageIcon(getClass().getResource("/Images/Modify.png")), 
+			showChangePasswordDialog = new ShowChangePasswordDialog("Cambiar Contraseña ", new ImageIcon(getClass().getResource("/Images/Password.png")), 
 					"Cambiar Contraseña ", 0, model, this);
 		}
 		return showChangePasswordDialog;
@@ -133,10 +143,18 @@ public class ActionManager {
 	
 	public Action getProductsToXLS() {
 		if(productsToXLS == null){
-			productsToXLS = new ProductsToXLS("Pasar a Excel ", null, 
+			productsToXLS = new ProductsToXLS("Pasar a Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
 					"Pasar a Excel", 0, model);
 		}
 		return productsToXLS;
+	}
+	
+	public Action getProductsFromXLS() {
+		if(productsFromXLS == null){
+			productsFromXLS = new ProductsFromXLS("Importar desde Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
+					"Importar desde Excel", 0, model, this);
+		}
+		return productsFromXLS;
 	}
 	
 	public MainFrame getMainFrame() {
@@ -144,12 +162,11 @@ public class ActionManager {
 	}
 
 	public static void main(String args[]){
-		ActionManager am = new ActionManager();
-		
 		try{
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		}
+		ActionManager am = new ActionManager();
 	}
 }
