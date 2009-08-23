@@ -16,13 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import model.Cloth;
+import model.ModelListener;
 import model.Provider;
+import model.User;
 import control.ActionManager;
 import enums.ClothColor;
 import enums.Seasson;
 
 @SuppressWarnings("serial")
-public class AddClothDialog extends JDialog{
+public class AddClothDialog extends JDialog implements ModelListener {
 
 	private JTextField code;
 	private JTextField description;
@@ -176,4 +179,18 @@ public class AddClothDialog extends JDialog{
 			}
 		}
 	};
+
+	public void addUser(User user) {}
+
+	public void loadCloth(Cloth cloth) {}
+
+	public void loadClothes(ArrayList<Cloth> clothes) {}
+
+	public void removeCloth(Cloth cloth) {}
+
+	public void removeUser() {}
+
+	public void addProvider(Provider provider) {
+		
+	}
 }

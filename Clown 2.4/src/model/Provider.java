@@ -20,7 +20,7 @@ public class Provider{
 
 	public Element toXML() {
 		Element element = new Element("Provider");
-		element.setAttribute("name", name);
+		element.setAttribute("Nombre", name);
 		return element;
 	}
 }

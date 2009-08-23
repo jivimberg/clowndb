@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import model.Cloth;
 import model.Model;
+import model.ModelListener;
 import model.Provider;
+import model.User;
 import view.AddClothDialog;
 
 public class ShowAddItemDialog extends GenericAction {

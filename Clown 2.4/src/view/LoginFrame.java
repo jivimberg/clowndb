@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import model.Cloth;
 import model.ModelListener;
+import model.Provider;
 import model.User;
 import control.ActionManager;
 
@@ -77,5 +78,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 	public void loadCloth(Cloth cloth) {}
 
 	public void removeCloth(Cloth cloth) {}
+
+	public void addProvider(Provider provider) {}
 
 }
