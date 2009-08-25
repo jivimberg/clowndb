@@ -1,0 +1,9 @@
+12/30/2008 V1.1.0
+- Improved scrollbar position for scrollpanes with titled border
+- Fixed tableHeader background painting bug
+- Fixed NPE for progressBars on OSX 10.4 and -Dapple.awt.graphics.UseQuartz=true
+
+-------------------------------------------------------------------------------
+
+11/10/2008 V1.0.0
+- First official release of the Simple2D LAF.
