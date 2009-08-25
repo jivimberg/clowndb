@@ -7,6 +7,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
+
 import model.Model;
 import view.AddClothDialog;
 import view.ChangePasswordDialog;
@@ -163,7 +165,7 @@ public class ActionManager {
 
 	public static void main(String args[]){
 		try{
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			 UIManager.setLookAndFeel(new SyntheticaSimple2DLookAndFeel());
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		}
