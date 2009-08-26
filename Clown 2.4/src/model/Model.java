@@ -97,8 +97,11 @@ public class Model{
 	}
 
 	public void addItem(String code, String description, ClothColor color, int size,
-			Double price, int amount, Seasson seasson, Provider provider) {
+			Double price, int amount, Seasson seasson, Provider provider, String imagePath) {
 		Cloth newCloth = new Cloth(code, description, color, size, price, seasson, amount, provider);
+		if(imagePath != null){
+			newCloth.setImage(imagePath);
+		}
 		clothes.add(newCloth);
 		for(ModelListener listener : listeners){
 			listener.loadCloth(newCloth);
@@ -275,10 +278,14 @@ public class Model{
 				Double price = Double.parseDouble(element.getAttributeValue("Precio"));
 				Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
 				Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
+				String imagePath = element.getAttributeValue("ImagePath");
 				List<Element> listOfElements = new ArrayList<Element>(clothesElement.getChildren());
 				Provider provider = getProvider(listOfElements.get(0));
 			
 				Cloth cloth = new Cloth(code, description, color, size, price, seasson, amount, provider);
+				if(imagePath != null){
+					cloth.setImage(imagePath);
+				}
 				clothes.add(cloth);
 			}
 			for(ModelListener listener : listeners){

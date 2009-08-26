@@ -1,16 +1,16 @@
 package view;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import model.Cloth;
 
 @SuppressWarnings("serial")
-public class ResultTable extends JTable{
+public class ResultTable extends JTable {
 
 	private DefaultTableModel tableModel;
 	
@@ -64,5 +64,10 @@ public class ResultTable extends JTable{
 		}
 		
 	}
+	
+	public void addSelectionListener(ListSelectionListener listener){
+		getSelectionModel().addListSelectionListener(listener);
+	}
+	
 }
 	

@@ -13,7 +13,7 @@ import model.ModelListener;
 import model.Provider;
 import model.User;
 import control.ActionManager;
-import control.ShowAddItemDialog;
+import control.productActions.ShowAddItemDialog;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ModelListener{
@@ -45,6 +45,7 @@ public class MainFrame extends JFrame implements ModelListener{
 		JScrollPane scrollPane = new JScrollPane(result);
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
+		result.addSelectionListener(previewPanel);
 		
 		addItemDialog = new AddClothDialog(am, this);
 		

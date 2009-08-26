@@ -1,4 +1,4 @@
-package control;
+package control.userActions;
 
 import java.awt.event.ActionEvent;
 
@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import control.GenericAction;
 
 import model.Model;
 import model.User;

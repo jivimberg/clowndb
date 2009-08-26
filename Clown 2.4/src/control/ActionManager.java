@@ -7,13 +7,28 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
+import control.productActions.AddItem;
+import control.productActions.ProductsFromXLS;
+import control.productActions.ProductsToXLS;
+import control.productActions.RemoveItem;
+import control.productActions.Search;
+import control.productActions.Sell;
+import control.productActions.ShowAddItemDialog;
+import control.providerActions.AddProvider;
+import control.providerActions.RemoveProvider;
+import control.userActions.AddUser;
+import control.userActions.ChangePassword;
+import control.userActions.CheckLogin;
+import control.userActions.RemoveUser;
+import control.userActions.ShowChangePasswordDialog;
 
 import model.Model;
 import view.AddClothDialog;
 import view.ChangePasswordDialog;
 import view.LoginFrame;
 import view.MainFrame;
+import view.SplashScreen;
+import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
 
 public class ActionManager {
 
@@ -169,6 +184,18 @@ public class ActionManager {
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		}
+		showSplashScreen();
 		ActionManager am = new ActionManager();
+	}
+	
+	public static void showSplashScreen(){
+		SplashScreen splashScreen = new SplashScreen("/Images/Clown.png");
+		splashScreen.open();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		splashScreen.close();
 	}
 }

@@ -1,10 +1,13 @@
-package control;
+package control.productActions;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+
+import control.ActionManager;
+import control.GenericAction;
 
 import model.Cloth;
 import model.Model;
