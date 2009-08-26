@@ -46,6 +46,10 @@ public class AddClothDialog extends JDialog{
 	
 	private String path;
 	
+	public String getPath() {
+		return path;
+	}
+
 	public AddClothDialog(ActionManager am, JFrame frame){
 		super(frame);
 		this.am = am;

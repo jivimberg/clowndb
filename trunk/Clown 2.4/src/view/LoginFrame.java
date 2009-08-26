@@ -63,6 +63,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);	
+		setAlwaysOnTop(true);
 	}
 
 	public void addUser(User User) {

@@ -3,10 +3,16 @@ To Do
 //El número indica niveles de prioridad
 
 1* Venta
-1* Terminar ABM Producto (con borrar producto y reducir cantidad)
+1* Terminar ABM Producto (reducir cantidad)
 1* Información detallada del producto
 2* Foto
 2* Campos obligatorios (supongo que se refiere a la alta de items)
 OK 2* Exportar a Excel
 2* BD Backup
+
+Revisar:
+
+//Chequear los campos nuevos
+//El talle también lleva letras!
+
 

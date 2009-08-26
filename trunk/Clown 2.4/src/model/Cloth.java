@@ -1,6 +1,14 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
+
+import javax.swing.ImageIcon;
 
 import org.jdom.Element;
 
@@ -18,6 +26,7 @@ public class Cloth{
 	private Seasson seasson;
 	private Provider provider;
 	private String path;
+	private String imagePath;
 
 	public Cloth(String code, String description, ClothColor color, Integer size, double price, Seasson seasson, int amount, Provider provider) {
 		this.code = code;
@@ -113,8 +122,33 @@ public class Cloth{
 		element.setAttribute("Precio", price.toString());
 		element.setAttribute("Cantidad", amount.toString());
 		element.setAttribute("Temporada", seasson.toString());
+		element.setAttribute("ImagePath", imagePath);
 		if(provider != null)
 			element.addContent(provider.toXML());
 		return element;
+	}
+
+	public void setImage(String imagePath) {
+		this.imagePath = imagePath;
+		
+		File f2 = new File("/Images/Products/" + path);
+		File f1 = new File(path);
+		
+		if(f1.exists()){
+			try {
+				InputStream in = new FileInputStream(f1);
+				OutputStream out = new FileOutputStream(f2); 
+				
+				int c;
+			    while ((c = in.read()) != -1){
+			      out.write(c);
+			    }
+			    in.close();
+			    out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}		
+		
 	}
 }

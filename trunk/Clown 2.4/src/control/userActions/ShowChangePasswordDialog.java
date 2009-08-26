@@ -1,8 +1,11 @@
-package control;
+package control.userActions;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
+
+import control.ActionManager;
+import control.GenericAction;
 
 import view.ChangePasswordDialog;
 

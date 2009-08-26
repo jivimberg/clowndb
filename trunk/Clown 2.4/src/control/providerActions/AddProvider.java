@@ -1,9 +1,11 @@
-package control;
+package control.providerActions;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import control.GenericAction;
 
 import model.Model;
 import model.Provider;

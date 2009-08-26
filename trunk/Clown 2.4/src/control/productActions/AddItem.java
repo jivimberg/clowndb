@@ -1,9 +1,11 @@
-package control;
+package control.productActions;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import control.GenericAction;
 
 import model.Cloth;
 import model.Model;
@@ -28,6 +30,7 @@ public class AddItem extends GenericAction {
 	public void actionPerformed(ActionEvent arg0) {
 		Integer size, amount;
 		Double price;
+		String imagePath = dialog.getPath();
 		
 		String code = dialog.getCode();
 		if(code.equals("")){
@@ -75,7 +78,7 @@ public class AddItem extends GenericAction {
 		Provider provider = dialog.getProvider();
 		
 		dialog.dispose();
-		model.addItem(code, description, color, size, price, amount, seasson, provider);
+		model.addItem(code, description, color, size, price, amount, seasson, provider, imagePath);
 	}
 
 }
