@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Juan Ignacio/Documents/Workspaces/Workspace Clown/Clown 2.4/libs/jdom.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Juan Ignacio/Documents/Workspaces/Workspace Clown/Clown 2.4/libs/laf/syntheticaSimple2D.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Juan Ignacio/Documents/Workspaces/Workspace Clown/Clown 2.4/libs/laf/synthetica.jar"/>
+	<classpathentry kind="lib" path="D:/Mis Documentos/Workspaces/Clown v2/Clown 2.4/libs/jdom.jar"/>
+	<classpathentry kind="lib" path="D:/Mis Documentos/Workspaces/Clown v2/Clown 2.4/libs/laf/synthetica.jar"/>
+	<classpathentry kind="lib" path="D:/Mis Documentos/Workspaces/Clown v2/Clown 2.4/libs/laf/syntheticaSimple2D.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

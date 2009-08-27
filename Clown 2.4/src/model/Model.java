@@ -16,6 +16,7 @@ import org.jdom.output.XMLOutputter;
 
 import enums.ClothColor;
 import enums.Seasson;
+import enums.Sex;
 import enums.UserType;
 
 public class Model{
@@ -96,9 +97,9 @@ public class Model{
 		
 	}
 
-	public void addItem(String code, String description, ClothColor color, int size,
-			Double price, int amount, Seasson seasson, Provider provider, String imagePath) {
-		Cloth newCloth = new Cloth(code, description, color, size, price, seasson, amount, provider);
+	public void addItem(String code, String description, ClothColor color, String size,
+			Double cost,Double wholesalePrice, Double retailPrice, int amount, Sex sex, Integer year, Seasson seasson, Provider provider, String imagePath) {
+		Cloth newCloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
 		if(imagePath != null){
 			newCloth.setImage(imagePath);
 		}
@@ -274,15 +275,19 @@ public class Model{
 				String code = element.getAttributeValue("Código");
 				String description = element.getAttributeValue("Descripción");
 				ClothColor color = ClothColor.valueOf(element.getAttributeValue("Color"));
-				Integer size = Integer.parseInt(element.getAttributeValue("Tamaño"));
-				Double price = Double.parseDouble(element.getAttributeValue("Precio"));
+				String size = element.getAttributeValue("Tamaño");
+				Double wholesalePrice = Double.parseDouble(element.getAttributeValue("PrecioM"));
+				Double retailPrice = Double.parseDouble(element.getAttributeValue("Preciom"));
+				Integer year = Integer.parseInt(element.getAttributeValue("Año"));
+				Sex sex = Sex.valueOf(element.getAttributeValue("Sexo"));
+				Double cost = Double.parseDouble(element.getAttributeValue("Costo"));
 				Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
 				Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
 				String imagePath = element.getAttributeValue("ImagePath");
 				List<Element> listOfElements = new ArrayList<Element>(clothesElement.getChildren());
 				Provider provider = getProvider(listOfElements.get(0));
 			
-				Cloth cloth = new Cloth(code, description, color, size, price, seasson, amount, provider);
+				Cloth cloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
 				if(imagePath != null){
 					cloth.setImage(imagePath);
 				}

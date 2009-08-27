@@ -35,7 +35,7 @@ public class ResultTable extends JTable {
 		clothString[2] = cloth.getDescription();
 		clothString[3] = cloth.getColor().toString();
 		clothString[4] = cloth.getSize();
-		clothString[5] = cloth.getPrice();
+		clothString[5] = cloth.getCost();
 		clothString[6] = cloth.getAmount();
 		tableModel.addRow(clothString);
 	}
