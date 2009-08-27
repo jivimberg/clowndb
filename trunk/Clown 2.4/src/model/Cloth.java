@@ -8,33 +8,41 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 
-import javax.swing.ImageIcon;
-
 import org.jdom.Element;
 
 import enums.ClothColor;
 import enums.Seasson;
+import enums.Sex;
 
 public class Cloth{
 	
 	private String code;
 	private String description;
 	private ClothColor color;
-	private Integer size;
-	private Double price;
+	private String size;
+	private Double cost;
+	private Double wholesalePrice;
+	private Double retailPrice;
 	private Integer amount;
+	private Sex sex;
 	private Seasson seasson;
+	private Integer year;
 	private Provider provider;
 	private String path;
 	private String imagePath;
 
-	public Cloth(String code, String description, ClothColor color, Integer size, double price, Seasson seasson, int amount, Provider provider) {
+	public Cloth(String code, String description, ClothColor color, String size, double cost, double wholesalePrice, 
+			Double retailPrice, Sex sex, Seasson seasson, Integer year, int amount, Provider provider) {
 		this.code = code;
 		this.description = description;
 		this.color = color;
 		this.size = size;
-		this.price = price;
+		this.cost = cost;
+		this.wholesalePrice = wholesalePrice;
+		this.retailPrice = retailPrice;
+		this.sex = sex;
 		this.seasson = seasson;
+		this.year = year;
 		this.amount = amount;
 		this.provider = provider;
 	}
@@ -63,14 +71,22 @@ public class Cloth{
 		this.color = color;
 	}
 
-	public double getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(Integer size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 	
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
 	public Seasson getSeasson() {
 		return seasson;
 	}
@@ -79,12 +95,36 @@ public class Cloth{
 		this.seasson = seasson;
 	}
 
-	public double getPrice() {
-		return price;
+	public Integer getYear() {
+		return year;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
+	public double getWholesalePrice() {
+		return wholesalePrice;
+	}
+
+	public void setWholesalePrice(double wholesalePrice) {
+		this.wholesalePrice = wholesalePrice;
+	}
+	
+	public double getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(double retailPrice) {
+		this.retailPrice = retailPrice;
 	}
 
 	public double getAmount() {
@@ -119,7 +159,11 @@ public class Cloth{
 		element.setAttribute("Descripción", description);
 		element.setAttribute("Color", color.toString());
 		element.setAttribute("Tamaño", size.toString());
-		element.setAttribute("Precio", price.toString());
+		element.setAttribute("Costo", cost.toString());
+		element.setAttribute("PrecioM", wholesalePrice.toString());
+		element.setAttribute("Preciom", retailPrice.toString());
+		element.setAttribute("Año", year.toString());
+		element.setAttribute("Sexo", sex.toString());
 		element.setAttribute("Cantidad", amount.toString());
 		element.setAttribute("Temporada", seasson.toString());
 		element.setAttribute("ImagePath", imagePath);

@@ -60,7 +60,7 @@ public class AddItem extends GenericAction {
 		}
 		
 		try{
-			price = Double.parseDouble(dialog.getPrice());
+			price = Double.parseDouble(dialog.getCost());
 		}catch(NumberFormatException e){
 			JOptionPane.showMessageDialog(null,"No se ha ingresado un precio válido"," Error!",JOptionPane.ERROR_MESSAGE);
 			return;
