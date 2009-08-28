@@ -98,8 +98,10 @@ public class Model{
 	}
 
 	public void addItem(String code, String description, ClothColor color, String size,
-			Double cost,Double wholesalePrice, Double retailPrice, int amount, Sex sex, Integer year, Seasson seasson, Provider provider, String imagePath) {
-		Cloth newCloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
+			Double cost,Integer amount, Seasson seasson, Provider provider, 
+			Double wholeSalePrice, Double retailPrice, Sex sex, Integer year, String imagePath) {
+		Cloth newCloth = new Cloth(code, description, color, size, cost, wholeSalePrice,
+				retailPrice, sex, seasson, amount, year, provider);
 		if(imagePath != null){
 			newCloth.setImage(imagePath);
 		}
@@ -288,16 +290,18 @@ public class Model{
 				Provider provider = getProvider(listOfElements.get(0));
 			
 				Cloth cloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
-				if(imagePath != null){
+				if(!imagePath.equals("null")){
 					cloth.setImage(imagePath);
 				}
+				System.out.println("ddd");
 				clothes.add(cloth);
 			}
 			for(ModelListener listener : listeners){
 				listener.loadClothes(clothes);
 			}
 		}catch (Exception exc){
-//			exc.printStackTrace();
+			System.out.println("Exception!");
+			exc.printStackTrace();
 		}
 		
 	}

@@ -21,7 +21,7 @@ public class MainFrame extends JFrame implements ModelListener{
 	private MyMenuBar menuBar;
 	private MyToolBar toolBar;
 	private SearchBar searchBar;
-	private ResultTable result;
+	private ResultTable inStock;
 	private PreviewPanel previewPanel;
 	private AddClothDialog addItemDialog;
 
@@ -41,11 +41,11 @@ public class MainFrame extends JFrame implements ModelListener{
 		previewPanel = new PreviewPanel();
 		previewPanel.setBorder(new TitledBorder("Vista Previa"));
 		panel2.add(previewPanel, BorderLayout.EAST);
-		result = new ResultTable();
-		JScrollPane scrollPane = new JScrollPane(result);
+		inStock = new ResultTable();
+		JScrollPane scrollPane = new JScrollPane(inStock);
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
-		result.addSelectionListener(previewPanel);
+		inStock.addSelectionListener(previewPanel);
 		
 		addItemDialog = new AddClothDialog(am, this);
 		
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame implements ModelListener{
 	}
 
 	public ResultTable getResult(){
-		return result;
+		return inStock;
 	}
 
 	public void addUser(User user){
@@ -81,16 +81,16 @@ public class MainFrame extends JFrame implements ModelListener{
 	}
 
 	public void loadClothes(ArrayList<Cloth> clothes) {
-		result.addResult(clothes);
+		inStock.addResult(clothes);
 	}
 
 	public void loadCloth(Cloth cloth) {
-		result.addItem(cloth);
+		inStock.addItem(cloth);
 		
 	}
 
 	public void removeCloth(Cloth cloth) {
-		result.remove(cloth);
+		inStock.remove(cloth);
 	}
 	
 	public AddClothDialog getAddItemDialog() {

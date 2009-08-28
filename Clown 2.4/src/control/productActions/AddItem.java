@@ -5,14 +5,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import control.GenericAction;
-
 import model.Cloth;
 import model.Model;
 import model.Provider;
 import view.AddClothDialog;
+import control.GenericAction;
 import enums.ClothColor;
 import enums.Seasson;
+import enums.Sex;
 
 public class AddItem extends GenericAction {
 
@@ -28,9 +28,10 @@ public class AddItem extends GenericAction {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		Integer size, amount;
-		Double price;
+		Integer amount, year;
+		Double price, wholeSalePrice, retailPrice;
 		String imagePath = dialog.getPath();
+		String size;
 		
 		String code = dialog.getCode();
 		if(code.equals("")){
@@ -53,11 +54,12 @@ public class AddItem extends GenericAction {
 		ClothColor color = dialog.getColor();
 		
 		try{
-			size = Integer.parseInt(dialog.getItemSize());
+			size = dialog.getItemSize();
 		}catch(NumberFormatException e){
 			JOptionPane.showMessageDialog(null,"No se ha ingresado un tamaño válido"," Error!",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		
 		
 		try{
 			price = Double.parseDouble(dialog.getCost());
@@ -73,12 +75,31 @@ public class AddItem extends GenericAction {
 			return;
 		}
 		
+		try{
+			wholeSalePrice = Double.parseDouble(dialog.getWholesalePrice());
+		}catch(NumberFormatException e){
+			JOptionPane.showMessageDialog(null,"No se ha ingresado una cantidad válida"," Error!",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		try{
+			retailPrice = Double.parseDouble(dialog.getRetailPrice());
+		}catch(NumberFormatException e){
+			JOptionPane.showMessageDialog(null,"No se ha ingresado una cantidad válida"," Error!",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		Seasson seasson = dialog.getSeasson();
+		
+		Sex sex = dialog.getSex();
 		
 		Provider provider = dialog.getProvider();
 		
+		year = Integer.parseInt(dialog.getYear());
+		
 		dialog.dispose();
-		model.addItem(code, description, color, size, price, amount, seasson, provider, imagePath);
+		model.addItem(code, description, color, size, price, year, seasson, 
+				provider, wholeSalePrice, retailPrice, sex, amount, imagePath);
 	}
 
 }

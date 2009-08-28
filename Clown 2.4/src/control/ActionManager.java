@@ -160,7 +160,7 @@ public class ActionManager {
 	
 	public Action getProductsToXLS() {
 		if(productsToXLS == null){
-			productsToXLS = new ProductsToXLS("Pasar a Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
+			productsToXLS = new ProductsToXLS("Exportar a Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
 					"Pasar a Excel", 0, model);
 		}
 		return productsToXLS;

@@ -58,7 +58,7 @@ public class AddClothDialog extends JDialog{
 	}
 
 	private void addContent() {
-		JPanel panel1 = new JPanel(new GridLayout(30,0));
+		JPanel panel1 = new JPanel(new GridLayout(14,0));
 		panel1.setBorder(new TitledBorder("Agregar Producto"));
 		getContentPane().add(panel1);
 		
@@ -138,7 +138,7 @@ public class AddClothDialog extends JDialog{
 		cancelButton.setAction(exit);
 		panel1.add(cancelButton);
 		
-		setSize(300, 700);
+		setSize(300, 500);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
@@ -171,8 +171,8 @@ public class AddClothDialog extends JDialog{
 		return retailPrice.getText();
 	}
 	
-	public Integer getYear(){
-		return (Integer) year.getSelectedItem();
+	public String getYear(){
+		return year.getSelectedItem().toString();
 	}
 	
 	public Sex getSex(){
