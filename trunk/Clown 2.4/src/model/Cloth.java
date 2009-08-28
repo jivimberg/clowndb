@@ -166,7 +166,11 @@ public class Cloth{
 		element.setAttribute("Sexo", sex.toString());
 		element.setAttribute("Cantidad", amount.toString());
 		element.setAttribute("Temporada", seasson.toString());
-		element.setAttribute("ImagePath", imagePath);
+		if(imagePath != null){
+			element.setAttribute("ImagePath", imagePath);
+		}else{
+			element.setAttribute("ImagePath", "null");
+		}
 		if(provider != null)
 			element.addContent(provider.toXML());
 		return element;

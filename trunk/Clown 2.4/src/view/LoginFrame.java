@@ -58,7 +58,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 		loginButton.setAction(am.getCheckLogin(username, password));
 		panel1.add(loginButton);
 		
-		setSize(210, 255);
+		setSize(210, 270);
         setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);

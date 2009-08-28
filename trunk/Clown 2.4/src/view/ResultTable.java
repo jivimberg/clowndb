@@ -16,7 +16,8 @@ public class ResultTable extends JTable {
 	
 	public ResultTable(){
 		tableModel = new DefaultTableModel();
-		String[] names = {"Nro. Articulo", "Código", "Descripcion", "Color", "Talle", "Precio", "Cantidad"};
+		String[] names = {"Nro. Articulo", "Código", "Descripcion", "Color", "Talle", "Costo", 
+				"Cantidad", "P. por mayor", "P. por menor", "Sexo", "Año"};
 		tableModel.setColumnIdentifiers(names);
 		setModel(tableModel);
 		setSize(new Dimension(1500,400));
@@ -29,7 +30,7 @@ public class ResultTable extends JTable {
 	}
 
 	public void addItem(Cloth cloth) {
-		Object[] clothString = new Object[7];
+		Object[] clothString = new Object[11];
 		clothString[0] = tableModel.getRowCount() + 1;
 		clothString[1] = cloth.getCode();
 		clothString[2] = cloth.getDescription();
@@ -37,6 +38,10 @@ public class ResultTable extends JTable {
 		clothString[4] = cloth.getSize();
 		clothString[5] = cloth.getCost();
 		clothString[6] = cloth.getAmount();
+		clothString[7] = cloth.getWholesalePrice();
+		clothString[8] = cloth.getRetailPrice();
+		clothString[9] = cloth.getSex();
+		clothString[10] = cloth.getYear();
 		tableModel.addRow(clothString);
 	}
 	

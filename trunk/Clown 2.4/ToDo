@@ -16,3 +16,9 @@ Revisar:
 //El talle también lleva letras!
 
 
+//Boton derecho sobre productos
+//Agregar color surtido o la opcion de ponerle cualquier color
+//sex: nena, varon, unisex
+//Campos obligatorios, todos menos precio por mayor y por menor
+//Chequear porque no se borra precio por mayor y por menor del cloth dialog
+
