@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -13,6 +14,7 @@ import model.Cloth;
 public class ResultTable extends JTable {
 
 	private DefaultTableModel tableModel;
+	private List<Cloth> clothes;
 	
 	public ResultTable(){
 		tableModel = new DefaultTableModel();
@@ -24,6 +26,7 @@ public class ResultTable extends JTable {
 	}
 	
 	public void addResult(List<Cloth> clothes){
+		this.clothes = clothes;
 		for(Cloth cloth : clothes){
 			addItem(cloth);
 		}
@@ -51,13 +54,13 @@ public class ResultTable extends JTable {
 		}
 	}
 
-	public String[] getSelectedObjects() {
+	public List<Cloth> getSelectedObjects() {
 		int[] selected = getSelectedRows();
-		String[] selectedObjectsCodes = new String[getSelectedRowCount()];
+		List<Cloth> selectedClothes = new ArrayList<Cloth>();
 		for (int i = 0; i < selected.length; i++) {
-			selectedObjectsCodes[i] = (String) tableModel.getValueAt(selected[i], 1);
+			selectedClothes.add(clothes.get(i));
 		}
-		return selectedObjectsCodes;
+		return selectedClothes;
 	}
 
 	public void remove(Cloth cloth) {
@@ -68,6 +71,10 @@ public class ResultTable extends JTable {
 			}
 		}
 		
+	}
+	
+	public Cloth getItem(int index) {
+		return clothes.get(index);
 	}
 	
 	public void addSelectionListener(ListSelectionListener listener){

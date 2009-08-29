@@ -23,8 +23,7 @@ public class Sell extends GenericAction {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		String[] selectedObjectsCodes = am.getMainFrame().getResult().getSelectedObjects();
-		List<Cloth> selectedClothes = model.getClothes(selectedObjectsCodes);
+		List<Cloth> selectedClothes = am.getMainFrame().getResult().getSelectedObjects();
 		if(!selectedClothes.isEmpty()){
 			model.sell(selectedClothes);
 		}

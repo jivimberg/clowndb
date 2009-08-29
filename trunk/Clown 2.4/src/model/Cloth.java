@@ -177,13 +177,11 @@ public class Cloth{
 	}
 
 	public void setImage(String imagePath) {
-		this.imagePath = imagePath;
-		
-		File f2 = new File("/Images/Products/" + path);
-		File f1 = new File(path);
+		File f2 = new File("src/Images/Products/" + code + ".jpg");
+		File f1 = new File(imagePath);
 		
 		if(f1.exists()){
-			try {
+			try {				
 				InputStream in = new FileInputStream(f1);
 				OutputStream out = new FileOutputStream(f2); 
 				
@@ -193,10 +191,18 @@ public class Cloth{
 			    }
 			    in.close();
 			    out.close();
+			    
+			    this.imagePath = "src/Images/Products/" + code + ".jpg";
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}		
 		
 	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+	
 }

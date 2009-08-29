@@ -30,27 +30,33 @@ public class MainFrame extends JFrame implements ModelListener{
 		JPanel panel1 = new JPanel(new BorderLayout());
 		panel1.setSize(200,400);
 		getContentPane().add(panel1);
+		
 		menuBar = new MyMenuBar(am);
 		setJMenuBar(menuBar);
+		
 		toolBar = new MyToolBar(am);
 		panel1.add(toolBar,BorderLayout.NORTH);
+		
 		JPanel panel2 = new JPanel(new BorderLayout());
 		panel1.add(panel2);
+		
 		searchBar = new SearchBar(am);
 		panel2.add(searchBar, BorderLayout.NORTH);
-		previewPanel = new PreviewPanel();
-		previewPanel.setBorder(new TitledBorder("Vista Previa"));
-		panel2.add(previewPanel, BorderLayout.EAST);
+		
 		inStock = new ResultTable();
 		JScrollPane scrollPane = new JScrollPane(inStock);
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
+		
+		previewPanel = new PreviewPanel(inStock);
+		previewPanel.setBorder(new TitledBorder("Vista Previa"));
+		panel2.add(previewPanel, BorderLayout.EAST);
 		inStock.addSelectionListener(previewPanel);
 		
 		addItemDialog = new AddClothDialog(am, this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800,500);
+		setSize(1000,600);
 		setLocationRelativeTo(null);
 	}
 	

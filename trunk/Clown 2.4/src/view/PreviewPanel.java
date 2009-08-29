@@ -2,11 +2,6 @@ package view;
 
 import java.awt.Image;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,13 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.Cloth;
+
 @SuppressWarnings("serial")
 public class PreviewPanel extends JPanel implements ListSelectionListener{
 
 	private JLabel photoLabel;
 	private ImageIcon photo;
+	private ResultTable resultTable;
 	
-	public PreviewPanel(){
+	public PreviewPanel(ResultTable resultTable){
+		this.resultTable = resultTable;
 		photo = new ImageIcon(getClass().getResource("/Images/noDisponible.jpg"));
 		photoLabel = new JLabel(photo);
 		addComponents();
@@ -29,15 +28,20 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 	private void addComponents(){
 		setImageNormalSize();
 		add(photoLabel);
+		repaint();
 	}
 	
 	private void addImage(String path){
-		File f1 = new File(path);
-		
-		if(f1.exists()){
-			photo = new ImageIcon(getClass().getResource(path));
-			setImageNormalSize(); //necesario??
-		}		
+		if(path != null){
+			File f1 = new File(path);
+			
+			if(f1.exists()){
+				remove(photoLabel);
+				photo = new ImageIcon(path);
+				photoLabel = new JLabel(photo);
+				addComponents();
+			}		
+		}
 	}
 	
 	private void setImageNormalSize(){
@@ -46,8 +50,8 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 	}
 	
 	public void valueChanged(ListSelectionEvent e){
-		//addImage(path);
-		System.out.println("hola");
+		Cloth cloth = resultTable.getItem(e.getLastIndex());
+		addImage(cloth.getImagePath());
 	}
 	
 }

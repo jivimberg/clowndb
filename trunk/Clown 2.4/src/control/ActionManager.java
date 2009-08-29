@@ -59,11 +59,11 @@ public class ActionManager {
 		model.loadClothDatabase();
 	}
 	
-	public AbstractAction getCheckLogin(JTextField username, JPasswordField password){
+	public AbstractAction getCheckLogin(LoginFrame frame){
 		if(checkLogin == null){
 			//Check the mnemonic
 			checkLogin = new CheckLogin("Ingresar", null, 
-					"Ingresar", 0, model, username, password);
+					"Ingresar", 0, model, frame);
 		}
 		return checkLogin;
 	}

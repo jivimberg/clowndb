@@ -293,15 +293,14 @@ public class Model{
 				if(!imagePath.equals("null")){
 					cloth.setImage(imagePath);
 				}
-				System.out.println("ddd");
 				clothes.add(cloth);
 			}
 			for(ModelListener listener : listeners){
 				listener.loadClothes(clothes);
 			}
 		}catch (Exception exc){
-			System.out.println("Exception!");
-			exc.printStackTrace();
+			//System.out.println("Exception!");
+			//exc.printStackTrace();
 		}
 		
 	}
@@ -362,19 +361,6 @@ public class Model{
 	public void changeUserPassword(String password){
 		activeUser.setPassword(password);
 		persistUsers();
-	}
-
-	public List<Cloth> getClothes(String[] selectedObjectsCodes) {
-		List<Cloth> selectedClothes = new ArrayList<Cloth>();
-		for (int i = 0; i < selectedObjectsCodes.length; i++) {
-			for(Cloth cloth : clothes){
-				if(cloth.getCode().equalsIgnoreCase(selectedObjectsCodes[i])){
-					selectedClothes.add(cloth);
-					break;
-				}
-			}
-		}
-		return selectedClothes;
 	}
 
 	public void sell(List<Cloth> selectedClothes) {

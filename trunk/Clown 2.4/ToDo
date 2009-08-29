@@ -3,6 +3,7 @@ To Do
 //El número indica niveles de prioridad
 
 1* Venta
+1* Cuadro de referencias
 1* Terminar ABM Producto (reducir cantidad)
 1* Información detallada del producto
 2* Foto
@@ -21,4 +22,4 @@ Revisar:
 //sex: nena, varon, unisex
 //Campos obligatorios, todos menos precio por mayor y por menor
 //Chequear porque no se borra precio por mayor y por menor del cloth dialog
-
+//Modificar el remove para que al borrar se borre también la imagen de la carpeta productos
