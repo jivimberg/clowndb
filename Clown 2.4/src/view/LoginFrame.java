@@ -51,11 +51,11 @@ public class LoginFrame extends JFrame implements ModelListener{
 		panel1.add(passwordLabel);
 		panel1.add(password);
 		
-		username.setAction(am.getCheckLogin(username, password));
-		password.setAction(am.getCheckLogin(username, password));
+		username.setAction(am.getCheckLogin(this));
+		password.setAction(am.getCheckLogin(this));
 		
 		JButton loginButton = new JButton();
-		loginButton.setAction(am.getCheckLogin(username, password));
+		loginButton.setAction(am.getCheckLogin(this));
 		panel1.add(loginButton);
 		
 		setSize(210, 270);
@@ -72,6 +72,16 @@ public class LoginFrame extends JFrame implements ModelListener{
 
 	public void removeUser() {
 		setVisible(true);
+	}
+	
+	
+
+	public JTextField getUsername() {
+		return username;
+	}
+
+	public JPasswordField getPassword() {
+		return password;
 	}
 
 	public void loadClothes(ArrayList<Cloth> clothes) {}

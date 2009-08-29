@@ -2,26 +2,27 @@ package control.userActions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import control.GenericAction;
-
 import model.Model;
 import model.User;
+import view.LoginFrame;
+import control.GenericAction;
 
 public class CheckLogin extends GenericAction {
 
 	private JTextField user;
 	private JPasswordField password;
+	private LoginFrame frame;
 	
-	public CheckLogin(String text, ImageIcon icon, String desc, Integer mnemonic, Model model, JTextField user, JPasswordField password){
+	public CheckLogin(String text, ImageIcon icon, String desc, Integer mnemonic, Model model, LoginFrame frame){
 		super(text, icon, desc, mnemonic, model);
-		this.user = user;
-		this.password = password;
+		this.user = frame.getUsername();
+		this.password = frame.getPassword();
+		this.frame = frame;
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		model.loadUsersDatabase();
@@ -31,12 +32,12 @@ public class CheckLogin extends GenericAction {
 					model.setActiveUser(user);
 					return;
 				}else{
-					JOptionPane.showMessageDialog(null,"Contraseña incorrecta"," Error!",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame,"Contraseña incorrecta"," Error!",JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}
 		}
-		JOptionPane.showMessageDialog(null,"Usuario inexistente"," Error!",JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(frame,"Usuario inexistente"," Error!",JOptionPane.ERROR_MESSAGE);
 		return;
 	}
 }

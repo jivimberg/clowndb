@@ -217,7 +217,7 @@ public class AddClothDialog extends JDialog{
 	private AbstractAction addImageAction = new AbstractAction("Agregar Imagen", new ImageIcon(getClass().getResource("/Images/Picture.png"))){
 		public void actionPerformed(ActionEvent e){
 			JFileChooser fc = new JFileChooser();
-			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			int returnVal = fc.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 	            File file = fc.getSelectedFile();
