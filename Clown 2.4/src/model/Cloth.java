@@ -198,7 +198,6 @@ public class Cloth{
 				e.printStackTrace();
 			}
 		}		
-		
 	}
 
 	public String getImagePath() {

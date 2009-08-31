@@ -13,7 +13,6 @@ import model.ModelListener;
 import model.Provider;
 import model.User;
 import control.ActionManager;
-import control.productActions.ShowAddItemDialog;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ModelListener{
@@ -24,6 +23,7 @@ public class MainFrame extends JFrame implements ModelListener{
 	private ResultTable inStock;
 	private PreviewPanel previewPanel;
 	private AddClothDialog addItemDialog;
+	private ModifyClothDialog modifyClothDialog; 
 
 	public MainFrame(ActionManager am){
 		super("Clown Baby v2.4");
@@ -55,6 +55,8 @@ public class MainFrame extends JFrame implements ModelListener{
 		
 		addItemDialog = new AddClothDialog(am, this);
 		
+		modifyClothDialog = new ModifyClothDialog(am, this);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1000,600);
 		setLocationRelativeTo(null);
@@ -74,6 +76,14 @@ public class MainFrame extends JFrame implements ModelListener{
 
 	public ResultTable getResult(){
 		return inStock;
+	}	
+
+	public ModifyClothDialog getModifyClothDialog() {
+		return modifyClothDialog;
+	}
+
+	public void setModifyClothDialog(ModifyClothDialog modifyClothDialog) {
+		this.modifyClothDialog = modifyClothDialog;
 	}
 
 	public void addUser(User user){
@@ -100,10 +110,15 @@ public class MainFrame extends JFrame implements ModelListener{
 
 	public void addProvider(Provider provider) {
 		addItemDialog.addProvider(provider);
+		modifyClothDialog.addProvider(provider);
 	}
 	
 	public void removeProvider(Provider provider) {
 		addItemDialog.removeProvider(provider);
+		modifyClothDialog.removeProvider(provider);
 	}
 	
+	public void ModifyCloth(Cloth cloth) {
+		inStock.modifyCloth(cloth);
+	}
 }

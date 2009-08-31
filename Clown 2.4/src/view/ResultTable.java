@@ -70,7 +70,6 @@ public class ResultTable extends JTable {
 				break;
 			}
 		}
-		
 	}
 	
 	public Cloth getItem(int index) {
@@ -80,6 +79,9 @@ public class ResultTable extends JTable {
 	public void addSelectionListener(ListSelectionListener listener){
 		getSelectionModel().addListSelectionListener(listener);
 	}
-	
+
+	public void modifyCloth(Cloth cloth) {
+		empty();
+		addResult(clothes);
+	}	
 }
-	

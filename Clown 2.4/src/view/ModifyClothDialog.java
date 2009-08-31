@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import model.Cloth;
 import model.Provider;
 import control.ActionManager;
 import enums.ClothColor;
@@ -23,7 +24,7 @@ import enums.Seasson;
 import enums.Sex;
 
 @SuppressWarnings("serial")
-public class AddClothDialog extends JDialog{
+public class ModifyClothDialog extends JDialog{
 
 	private JTextField code;
 	private JTextField description;
@@ -39,7 +40,7 @@ public class AddClothDialog extends JDialog{
 	private JComboBox sex;
 	private JButton addProvider;
 	
-	private JButton addItemButton;
+	private JButton modifyItemButton;
 	private JButton cancelButton;
 	private JButton addImageButton;
 	
@@ -47,11 +48,13 @@ public class AddClothDialog extends JDialog{
 	
 	private String path;
 	
+	private Cloth cloth;
+	
 	public String getPath() {
 		return path;
 	}
 
-	public AddClothDialog(ActionManager am, JFrame frame){
+	public ModifyClothDialog(ActionManager am, JFrame frame){
 		super(frame);
 		this.am = am;
 		addContent();
@@ -59,18 +62,18 @@ public class AddClothDialog extends JDialog{
 
 	private void addContent() {
 		JPanel panel1 = new JPanel(new GridLayout(14,0));
-		panel1.setBorder(new TitledBorder("Agregar Producto"));
+		panel1.setBorder(new TitledBorder("Modificar Producto"));
 		getContentPane().add(panel1);
 		
 		panel1.add(new JLabel("  Código:"));
 		code = new JTextField(20);
 		panel1.add(code);
-		code.setAction(am.getAddItem(this));
+
 		
 		panel1.add(new JLabel("  Descripción:"));
 		description = new JTextField(20);
 		panel1.add(description);
-		description.setAction(am.getAddItem(this));
+
 		
 		panel1.add(new JLabel("  Color:"));
 		color = new JComboBox(ClothColor.values());
@@ -79,27 +82,23 @@ public class AddClothDialog extends JDialog{
 		panel1.add(new JLabel("  Tamaño:"));
 		size = new JTextField(20);
 		panel1.add(size);
-		size.setAction(am.getAddItem(this));
+
 		
 		panel1.add(new JLabel("  Costo: (en pesos $)"));
 		cost = new JTextField(20);
 		panel1.add(cost);
-		cost.setAction(am.getAddItem(this));
 		
 		panel1.add(new JLabel("  Precio por Mayor: (en pesos $)"));
 		wholesalePrice = new JTextField(20);
 		panel1.add(wholesalePrice);
-		wholesalePrice.setAction(am.getAddItem(this));
-		
+
 		panel1.add(new JLabel("  Precio por Menor: (en pesos $)"));
 		retailPrice = new JTextField(20);
 		panel1.add(retailPrice);
-		retailPrice.setAction(am.getAddItem(this));
 		
 		panel1.add(new JLabel("  Cantidad:"));
 		amount = new JTextField(20);
 		panel1.add(amount);
-		amount.setAction(am.getAddItem(this));
 		
 		panel1.add(new JLabel("  Temporada:"));
 		seasson = new JComboBox(Seasson.values());
@@ -128,9 +127,9 @@ public class AddClothDialog extends JDialog{
 		addImageButton.setAction(addImageAction);
 		panel1.add(addImageButton);
 		
-		addItemButton = new JButton("Agregar");
-		panel1.add(addItemButton);
-		addItemButton.setAction(am.getAddItem(this));
+		modifyItemButton = new JButton();
+		panel1.add(modifyItemButton);
+		modifyItemButton.setAction(am.getModifyItem(this));
 		
 		cancelButton = new JButton("Cancelar");
 		cancelButton.setAction(exit);
@@ -190,23 +189,16 @@ public class AddClothDialog extends JDialog{
 	}
 	
 	public JButton getAddItemButton(){
-		return addItemButton;
+		return modifyItemButton;
 	}
 
 	public JButton getCancelButton(){
 		return cancelButton;
 	}
 	
-	public void openWindow(){
+	public void openWindow(Cloth cloth){
+		setCloth(cloth);
 		setVisible(true);
-		code.setText(null);
-		description.setText(null);
-		size.setText(null);
-		cost.setText(null);
-		amount.setText(null);
-		wholesalePrice.setText(null);
-		retailPrice.setText(null);
-		path = null;
 	}
 	
 	private AbstractAction exit = new AbstractAction("Cancelar"){
@@ -233,5 +225,25 @@ public class AddClothDialog extends JDialog{
 	
 	public void removeProvider(Provider provider) {
 		this.provider.removeItem(provider.getName());
+	}
+
+	public Cloth getCloth() {
+		return cloth;
+	}
+
+	public void setCloth(Cloth cloth) {
+		this.cloth = cloth;
+		code.setText(cloth.getCode());
+		description.setText(cloth.getDescription());
+		size.setText(cloth.getSize());
+		amount.setText(new Integer(new Double(cloth.getAmount()).intValue()).toString());
+		cost.setText(new Double(cloth.getCost()).toString());
+		retailPrice.setText(new Double(cloth.getRetailPrice()).toString());
+		wholesalePrice.setText(new Double(cloth.getWholesalePrice()).toString());
+		seasson.setSelectedItem(cloth.getSeasson());
+//		provider.setSelectedItem(cloth.getProvider().getName());
+		year.setSelectedItem(cloth.getYear());
+		sex.setSelectedItem(cloth.getSex());
+		path = cloth.getPath();
 	}
 }

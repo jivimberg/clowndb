@@ -3,17 +3,24 @@ package control;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import model.Model;
+import view.AddClothDialog;
+import view.ChangePasswordDialog;
+import view.LoginFrame;
+import view.MainFrame;
+import view.ModifyClothDialog;
+import view.SplashScreen;
 import control.productActions.AddItem;
+import control.productActions.ModifyItem;
 import control.productActions.ProductsFromXLS;
 import control.productActions.ProductsToXLS;
 import control.productActions.RemoveItem;
 import control.productActions.Search;
 import control.productActions.Sell;
 import control.productActions.ShowAddItemDialog;
+import control.productActions.ShowModifyItemDialog;
 import control.providerActions.AddProvider;
 import control.providerActions.RemoveProvider;
 import control.userActions.AddUser;
@@ -21,14 +28,8 @@ import control.userActions.ChangePassword;
 import control.userActions.CheckLogin;
 import control.userActions.RemoveUser;
 import control.userActions.ShowChangePasswordDialog;
-
-import model.Model;
-import view.AddClothDialog;
-import view.ChangePasswordDialog;
-import view.LoginFrame;
-import view.MainFrame;
-import view.SplashScreen;
 import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
+import enums.UserType;
 
 public class ActionManager {
 
@@ -37,8 +38,10 @@ public class ActionManager {
 	private LoginFrame loginFrame;
 	private AbstractAction checkLogin;
 	private AddItem addItem;
+	private ModifyItem modifyItem;
 	private AbstractAction removeItem;
 	private AbstractAction showAddItemDialog;
+	private AbstractAction showModifyItemDialog;
 	private AbstractAction addProvider;
 	private AbstractAction removeProvider;
 	private AbstractAction addUser;
@@ -83,6 +86,23 @@ public class ActionManager {
 		}
 		addItem.setDialog(dialog);
 		return addItem;
+	}
+	
+	public AbstractAction getShowModifyItemDialog() {
+		if(showModifyItemDialog == null){
+			showModifyItemDialog = new ShowModifyItemDialog("Modificar Producto ", new ImageIcon(getClass().getResource("/Images/Modify.png")), 
+					"Modificar producto ", 0, model, this);
+		}
+		return showModifyItemDialog;
+	}
+	
+	public AbstractAction getModifyItem(ModifyClothDialog dialog) {
+		if(modifyItem == null){
+			modifyItem = new ModifyItem("Modificar ",  null, 
+					"Detalles del producto ", 0, model);
+		}
+		modifyItem.setDialog(dialog);
+		return modifyItem;
 	}
 	
 	public AbstractAction getRemoveItem() {

@@ -5,7 +5,6 @@ To Do
 1* Venta
 1* Cuadro de referencias
 1* Terminar ABM Producto (reducir cantidad)
-1* Información detallada del producto
 2* Foto
 2* Campos obligatorios (supongo que se refiere a la alta de items)
 OK 2* Exportar a Excel
@@ -13,13 +12,6 @@ OK 2* Exportar a Excel
 
 Revisar:
 
-//Chequear los campos nuevos
-//El talle también lleva letras!
-
-
+//No se guarda el nombre del proveedor en el xml del producto
 //Boton derecho sobre productos
-//Agregar color surtido o la opcion de ponerle cualquier color
-//sex: nena, varon, unisex
-//Campos obligatorios, todos menos precio por mayor y por menor
-//Chequear porque no se borra precio por mayor y por menor del cloth dialog
 //Modificar el remove para que al borrar se borre también la imagen de la carpeta productos
