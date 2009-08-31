@@ -28,6 +28,7 @@ public class MyMenuBar extends JMenuBar {
 		file = new JMenu("Archivo");
 		add(file);
 		file.add(am.getShowAddItemDialog());
+		file.add(am.getShowModifyItemDialog());
 		
 		/*----EDITAR----*/
 		edit = new JMenu("Editar");

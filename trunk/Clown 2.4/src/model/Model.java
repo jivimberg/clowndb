@@ -112,6 +112,31 @@ public class Model{
 		persistClothes();
 	}
 	
+	public void modifyItem(int index, String code, String description, ClothColor color, String size,
+			Double cost,Integer amount, Seasson seasson, Provider provider, 
+			Double wholeSalePrice, Double retailPrice, Sex sex, Integer year, String imagePath) {
+		Cloth cloth = clothes.get(index);
+		cloth.setCode(code);
+		cloth.setDescription(description);
+		cloth.setColor(color);
+		cloth.setSize(size);
+		cloth.setCost(cost);
+		cloth.setWholesalePrice(wholeSalePrice);
+		cloth.setAmount(amount);
+		cloth.setSeasson(seasson);
+		cloth.setProvider(provider);
+		cloth.setRetailPrice(retailPrice);
+		cloth.setSex(sex);
+		cloth.setYear(year);
+		if(imagePath != null){
+			cloth.setImage(imagePath);	
+		}
+		for(ModelListener listener : listeners){
+			listener.ModifyCloth(cloth);
+		}
+		persistClothes();
+	}
+	
 	public void removeItem(Cloth cloth) {
 		clothes.remove(cloth);
 		persistClothes();

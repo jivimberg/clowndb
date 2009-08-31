@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -51,7 +50,7 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 	}
 	
 	public void valueChanged(ListSelectionEvent e){
-		Cloth cloth = resultTable.getItem(e.getLastIndex());
+		Cloth cloth = resultTable.getItem(e.getFirstIndex());
 		addImage(cloth.getImagePath());
 	}
 	

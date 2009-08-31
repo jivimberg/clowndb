@@ -2,6 +2,7 @@ package enums;
 
 public enum Sex {
 
-	Nene,
-	Nena;
+	Varon,
+	Nena,
+	unisex;
 }

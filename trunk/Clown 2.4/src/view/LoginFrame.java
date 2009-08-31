@@ -28,7 +28,7 @@ public class LoginFrame extends JFrame implements ModelListener{
 	public LoginFrame(ActionManager am){
 		super("Clown Baby v2.4");
 		this.am = am;
-		username = new JTextField(20);
+		username = new JTextField("Administrador", 20);
 		password = new JPasswordField(20);
 		addComponents();
 	}
@@ -93,4 +93,6 @@ public class LoginFrame extends JFrame implements ModelListener{
 	public void addProvider(Provider provider) {}
 
 	public void removeProvider(Provider provider) {}
+
+	public void ModifyCloth(Cloth cloth) {}
 }

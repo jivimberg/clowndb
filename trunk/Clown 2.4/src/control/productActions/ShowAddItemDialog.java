@@ -4,10 +4,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 
+import model.Model;
 import control.ActionManager;
 import control.GenericAction;
-
-import model.Model;
 
 public class ShowAddItemDialog extends GenericAction {
 	

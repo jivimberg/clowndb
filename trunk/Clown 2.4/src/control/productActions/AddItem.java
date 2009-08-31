@@ -78,15 +78,13 @@ public class AddItem extends GenericAction {
 		try{
 			wholeSalePrice = Double.parseDouble(dialog.getWholesalePrice());
 		}catch(NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"No se ha ingresado una cantidad válida"," Error!",JOptionPane.ERROR_MESSAGE);
-			return;
+			wholeSalePrice = 0.0;
 		}
 		
 		try{
 			retailPrice = Double.parseDouble(dialog.getRetailPrice());
 		}catch(NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"No se ha ingresado una cantidad válida"," Error!",JOptionPane.ERROR_MESSAGE);
-			return;
+			retailPrice = 0.0;
 		}
 		
 		Seasson seasson = dialog.getSeasson();
@@ -101,5 +99,4 @@ public class AddItem extends GenericAction {
 		model.addItem(code, description, color, size, price, year, seasson, 
 				provider, wholeSalePrice, retailPrice, sex, amount, imagePath);
 	}
-
 }
