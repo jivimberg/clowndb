@@ -90,11 +90,6 @@ public class MainFrame extends JFrame implements ModelListener{
 		inStock.addResult(clothes);
 	}
 
-	public void loadCloth(Cloth cloth) {
-		inStock.addItem(cloth);
-		
-	}
-
 	public void removeCloth(Cloth cloth) {
 		inStock.remove(cloth);
 	}

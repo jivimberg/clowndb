@@ -32,7 +32,7 @@ public class ResultTable extends JTable {
 		}
 	}
 
-	public void addItem(Cloth cloth) {
+	private void addItem(Cloth cloth) {
 		Object[] clothString = new Object[11];
 		clothString[0] = tableModel.getRowCount() + 1;
 		clothString[1] = cloth.getCode();
