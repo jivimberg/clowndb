@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -34,11 +35,11 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 	private void addImage(String path){
 		if(path != null){
 			File f1 = new File(path);
-			
+
 			if(f1.exists()){
 				remove(photoLabel);
-				photo = new ImageIcon(path);
-				photoLabel = new JLabel(photo);
+				photo = new ImageIcon(f1.getAbsolutePath());
+				photoLabel.setIcon(photo);
 				addComponents();
 			}		
 		}

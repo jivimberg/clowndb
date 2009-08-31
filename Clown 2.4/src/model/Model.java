@@ -107,7 +107,7 @@ public class Model{
 		}
 		clothes.add(newCloth);
 		for(ModelListener listener : listeners){
-			listener.loadCloth(newCloth);
+			listener.loadClothes(clothes);
 		}
 		persistClothes();
 	}
