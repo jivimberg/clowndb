@@ -41,6 +41,9 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 				photoLabel.setIcon(photo);
 				addComponents();
 			}		
+		}else{
+			System.out.println(path);
+			setDefaultPicture();
 		}
 	}
 	
@@ -50,8 +53,16 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 	}
 	
 	public void valueChanged(ListSelectionEvent e){
-		Cloth cloth = resultTable.getItem(e.getFirstIndex());
-		addImage(cloth.getImagePath());
+		if(e.getValueIsAdjusting() == true){
+			Cloth cloth = resultTable.getItem(e.getFirstIndex());
+			addImage(cloth.getImagePath());
+		}
+	}
+	
+	private void setDefaultPicture(){
+		photo = new ImageIcon(getClass().getResource("/Images/noDisponible.jpg"));
+		photoLabel = new JLabel(photo);
+		addComponents();
 	}
 	
 }

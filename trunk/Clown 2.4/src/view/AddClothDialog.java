@@ -38,6 +38,7 @@ public class AddClothDialog extends JDialog{
 	private JComboBox year;
 	private JComboBox sex;
 	private JButton addProvider;
+	private JLabel pathLabel;
 	
 	private JButton addItemButton;
 	private JButton cancelButton;
@@ -46,10 +47,6 @@ public class AddClothDialog extends JDialog{
 	private ActionManager am;
 	
 	private String path;
-	
-	public String getPath() {
-		return path;
-	}
 
 	public AddClothDialog(ActionManager am, JFrame frame){
 		super(frame);
@@ -58,7 +55,7 @@ public class AddClothDialog extends JDialog{
 	}
 
 	private void addContent() {
-		JPanel panel1 = new JPanel(new GridLayout(14,0));
+		JPanel panel1 = new JPanel(new GridLayout(15,0));
 		panel1.setBorder(new TitledBorder("Agregar Producto"));
 		getContentPane().add(panel1);
 		
@@ -119,6 +116,10 @@ public class AddClothDialog extends JDialog{
 		panel1.add(new JLabel("  Sexo:"));
 		sex = new JComboBox(Sex.values());
 		panel1.add(sex);
+		
+		panel1.add(new JLabel("  Imagen:"));
+		pathLabel = new JLabel("vacio");
+		panel1.add(pathLabel);
 		
 		addProvider = new JButton();
 		addProvider.setAction(am.getAddProvider());
@@ -206,6 +207,7 @@ public class AddClothDialog extends JDialog{
 		amount.setText(null);
 		wholesalePrice.setText(null);
 		retailPrice.setText(null);
+		pathLabel.setText("vacio");
 		path = null;
 	}
 	
@@ -223,6 +225,7 @@ public class AddClothDialog extends JDialog{
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 	            File file = fc.getSelectedFile();
 	            path = file.getAbsolutePath();
+	            pathLabel.setText(path);
 			}
 		}
 	};
@@ -233,5 +236,9 @@ public class AddClothDialog extends JDialog{
 	
 	public void removeProvider(Provider provider) {
 		this.provider.removeItem(provider.getName());
+	}
+	
+	public String getPath() {
+		return path;
 	}
 }

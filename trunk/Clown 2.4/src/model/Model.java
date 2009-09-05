@@ -91,10 +91,20 @@ public class Model{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			removeImages();
 		}else{
 			clothesToRAM();
 		}
 		
+	}
+
+	private void removeImages() {
+		File folder = new File ("/Images/Products");
+		
+		File[] files = folder.listFiles();
+		for (File file : files) {
+			file.delete();
+		}
 	}
 
 	public void addItem(String code, String description, ClothColor color, String size,
@@ -148,6 +158,10 @@ public class Model{
 	
 	public void removeItem(List<Cloth> selectedClothes) {
 		for (Cloth cloth : selectedClothes) {
+			if(cloth.getImagePath() != null){
+				File f = new File(cloth.getImagePath());
+				f.delete();
+			}
 			removeItem(cloth);
 		}
 	}
@@ -311,9 +325,9 @@ public class Model{
 				Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
 				Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
 				String imagePath = element.getAttributeValue("ImagePath");
-				List<Element> listOfElements = new ArrayList<Element>(clothesElement.getChildren());
+				List<Element> listOfElements = new ArrayList<Element>(element.getChildren());
 				Provider provider = getProvider(listOfElements.get(0));
-			
+				
 				Cloth cloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
 				if(!imagePath.equals("null")){
 					cloth.setImage(imagePath);

@@ -26,7 +26,7 @@ public class MainFrame extends JFrame implements ModelListener{
 	private ModifyClothDialog modifyClothDialog; 
 
 	public MainFrame(ActionManager am){
-		super("Clown Baby v2.4");
+		super("Clown Baby");
 		JPanel panel1 = new JPanel(new BorderLayout());
 		panel1.setSize(200,400);
 		getContentPane().add(panel1);
