@@ -13,11 +13,11 @@ import model.Cloth;
 @SuppressWarnings("serial")
 public class ResultTable extends JTable {
 
-	private DefaultTableModel tableModel;
+	private MyDefaultTableModel tableModel;
 	private List<Cloth> clothes;
 	
 	public ResultTable(){
-		tableModel = new DefaultTableModel();
+		tableModel = new MyDefaultTableModel();
 		String[] names = {"Nro. Articulo", "Código", "Descripcion", "Color", "Talle", "Costo", 
 				"Cantidad", "P. por mayor", "P. por menor", "Sexo", "Año"};
 		tableModel.setColumnIdentifiers(names);
@@ -26,6 +26,7 @@ public class ResultTable extends JTable {
 	}
 	
 	public void addResult(List<Cloth> clothes){
+		empty();
 		this.clothes = clothes;
 		for(Cloth cloth : clothes){
 			addItem(cloth);
@@ -84,4 +85,14 @@ public class ResultTable extends JTable {
 		empty();
 		addResult(clothes);
 	}	
+	
+	class MyDefaultTableModel extends DefaultTableModel{
+		public MyDefaultTableModel() {  
+			super();  
+		}  
+		
+		public boolean isCellEditable(int row, int col) {  
+		   return false;  
+		}  
+	};  
 }

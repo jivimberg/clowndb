@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -49,6 +50,7 @@ public class ModifyClothDialog extends JDialog{
 	private String path;
 	
 	private Cloth cloth;
+	private JLabel pathLabel;
 	
 	public String getPath() {
 		return path;
@@ -61,7 +63,7 @@ public class ModifyClothDialog extends JDialog{
 	}
 
 	private void addContent() {
-		JPanel panel1 = new JPanel(new GridLayout(14,0));
+		JPanel panel1 = new JPanel(new GridLayout(15,0));
 		panel1.setBorder(new TitledBorder("Modificar Producto"));
 		getContentPane().add(panel1);
 		
@@ -118,6 +120,10 @@ public class ModifyClothDialog extends JDialog{
 		panel1.add(new JLabel("  Sexo:"));
 		sex = new JComboBox(Sex.values());
 		panel1.add(sex);
+		
+		panel1.add(new JLabel("  Imagen:"));
+		pathLabel = new JLabel("vacio");
+		panel1.add(pathLabel);
 		
 		addProvider = new JButton();
 		addProvider.setAction(am.getAddProvider());
@@ -215,6 +221,7 @@ public class ModifyClothDialog extends JDialog{
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 	            File file = fc.getSelectedFile();
 	            path = file.getAbsolutePath();
+	            pathLabel.setText(path);
 			}
 		}
 	};
@@ -241,9 +248,9 @@ public class ModifyClothDialog extends JDialog{
 		retailPrice.setText(new Double(cloth.getRetailPrice()).toString());
 		wholesalePrice.setText(new Double(cloth.getWholesalePrice()).toString());
 		seasson.setSelectedItem(cloth.getSeasson());
-//		provider.setSelectedItem(cloth.getProvider().getName());
+		provider.setSelectedItem(cloth.getProvider().getName());
 		year.setSelectedItem(cloth.getYear());
 		sex.setSelectedItem(cloth.getSex());
-		path = cloth.getPath();
+		path = cloth.getImagePath();
 	}
 }

@@ -26,10 +26,11 @@ public class LoginFrame extends JFrame implements ModelListener{
 	private ActionManager am;
 	
 	public LoginFrame(ActionManager am){
-		super("Clown Baby v2.4");
+		super("Clown Baby");
 		this.am = am;
 		username = new JTextField("Administrador", 20);
 		password = new JPasswordField(20);
+//		password.requestFocusInWindow();
 		addComponents();
 	}
 	
@@ -73,8 +74,6 @@ public class LoginFrame extends JFrame implements ModelListener{
 	public void removeUser() {
 		setVisible(true);
 	}
-	
-	
 
 	public JTextField getUsername() {
 		return username;

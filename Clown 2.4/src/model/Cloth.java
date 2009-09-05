@@ -28,7 +28,6 @@ public class Cloth{
 	private Seasson seasson;
 	private Integer year;
 	private Provider provider;
-	private String path;
 	private String imagePath;
 
 	public Cloth(String code, String description, ClothColor color, String size, double cost, double wholesalePrice, 
@@ -142,15 +141,7 @@ public class Cloth{
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
-	
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-	
+		
 	public Element toXML(){
 		Element element = new Element("Cloth");
 		Date date = new Date();
