@@ -2,11 +2,11 @@ To Do
 
 //El número indica niveles de prioridad
 
-1* Venta
+OK 1* Venta
 1* Cuadro de referencias
-1* Terminar ABM Producto (reducir cantidad)
-2* Foto
-2* Campos obligatorios (supongo que se refiere a la alta de items)
+OK 1* Terminar ABM Producto (reducir cantidad)
+OK 2* Foto
+OK 2* Campos obligatorios (supongo que se refiere a la alta de items)
 OK 2* Exportar a Excel
 2* BD Backup
 

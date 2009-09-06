@@ -19,8 +19,10 @@ import control.productActions.ProductsToXLS;
 import control.productActions.RemoveItem;
 import control.productActions.Search;
 import control.productActions.Sell;
+import control.productActions.SellSearchA;
 import control.productActions.ShowAddItemDialog;
 import control.productActions.ShowModifyItemDialog;
+import control.productActions.ShowSellDialog;
 import control.providerActions.AddProvider;
 import control.providerActions.RemoveProvider;
 import control.userActions.AddUser;
@@ -29,7 +31,6 @@ import control.userActions.CheckLogin;
 import control.userActions.RemoveUser;
 import control.userActions.ShowChangePasswordDialog;
 import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
-import enums.UserType;
 
 public class ActionManager {
 
@@ -42,6 +43,7 @@ public class ActionManager {
 	private AbstractAction removeItem;
 	private AbstractAction showAddItemDialog;
 	private AbstractAction showModifyItemDialog;
+	private AbstractAction showSellDialog;
 	private AbstractAction addProvider;
 	private AbstractAction removeProvider;
 	private AbstractAction addUser;
@@ -49,6 +51,7 @@ public class ActionManager {
 	private AbstractAction showChangePasswordDialog;
 	private ChangePassword changePassword;
 	private AbstractAction search;
+	private AbstractAction sellSearch;
 	private AbstractAction sell;
 	private AbstractAction productsToXLS;
 	private AbstractAction productsFromXLS;
@@ -58,6 +61,7 @@ public class ActionManager {
 		this.mainFrame = new MainFrame(this);
 		this.loginFrame = new LoginFrame(this);
 		model.addModelListener(mainFrame);
+		model.addModelListener(mainFrame.getSellDialog());
 		model.addModelListener(loginFrame);
 		model.loadClothDatabase();
 	}
@@ -90,8 +94,8 @@ public class ActionManager {
 	
 	public AbstractAction getShowModifyItemDialog() {
 		if(showModifyItemDialog == null){
-			showModifyItemDialog = new ShowModifyItemDialog("Modificar Producto ", new ImageIcon(getClass().getResource("/Images/Modify.png")), 
-					"Modificar producto ", 0, model, this);
+			showModifyItemDialog = new ShowModifyItemDialog("Detalles del Producto ", new ImageIcon(getClass().getResource("/Images/Modify.png")), 
+					"Detalles del producto ", 0, model, this);
 		}
 		return showModifyItemDialog;
 	}
@@ -170,12 +174,28 @@ public class ActionManager {
 		return search;
 	}
 	
+	public Action getSellSearch() {
+		if(sellSearch == null){
+			sellSearch = new SellSearchA("Buscar Producto ", new ImageIcon(getClass().getResource("/Images/Search.png")), 
+					"Buscar Producto ", 0, model, this);
+		}
+		return sellSearch;
+	}
+	
 	public Action getSell() {
 		if(sell == null){
-			sell = new Sell("Vender Producto ", null, 
+			sell = new Sell("Vender Producto ", new ImageIcon(getClass().getResource("/Images/Vender.jpg")), 
 					"Vender Producto ", 0, model, this);
 		}
 		return sell;
+	}
+	
+	public Action getShowSellDialog() {
+		if(showSellDialog == null){
+			showSellDialog = new ShowSellDialog("Ver ventas ", new ImageIcon(getClass().getResource("/Images/Line Chart.png")), 
+					"Ver ventas ", 0, model, this);
+		}
+		return showSellDialog;
 	}
 	
 	public Action getProductsToXLS() {

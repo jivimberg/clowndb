@@ -17,4 +17,8 @@ public interface ModelListener {
 	public void removeProvider(Provider provider);
 	
 	public void ModifyCloth(Cloth cloth);
+	
+	public void sell(Cloth cloth, int amount);
+	
+	public void loadSellClothes(ArrayList<ClothSold> clothSold);
 }

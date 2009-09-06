@@ -8,7 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import view.sell.SellDialog;
+
 import model.Cloth;
+import model.ClothSold;
 import model.ModelListener;
 import model.Provider;
 import model.User;
@@ -23,7 +26,8 @@ public class MainFrame extends JFrame implements ModelListener{
 	private ResultTable inStock;
 	private PreviewPanel previewPanel;
 	private AddClothDialog addItemDialog;
-	private ModifyClothDialog modifyClothDialog; 
+	private ModifyClothDialog modifyClothDialog;
+	private SellDialog sellDialog;
 
 	public MainFrame(ActionManager am){
 		super("Clown Baby");
@@ -48,14 +52,16 @@ public class MainFrame extends JFrame implements ModelListener{
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
 		
-		previewPanel = new PreviewPanel(inStock);
-		previewPanel.setBorder(new TitledBorder("Vista Previa"));
-		panel2.add(previewPanel, BorderLayout.EAST);
-		inStock.addSelectionListener(previewPanel);
+//		previewPanel = new PreviewPanel(inStock);
+//		previewPanel.setBorder(new TitledBorder("Vista Previa"));
+//		panel2.add(previewPanel, BorderLayout.EAST);
+//		inStock.addSelectionListener(previewPanel);
 		
 		addItemDialog = new AddClothDialog(am, this);
 		
 		modifyClothDialog = new ModifyClothDialog(am, this);
+		
+		sellDialog = new SellDialog(am, this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1000,600);
@@ -84,6 +90,10 @@ public class MainFrame extends JFrame implements ModelListener{
 
 	public void setModifyClothDialog(ModifyClothDialog modifyClothDialog) {
 		this.modifyClothDialog = modifyClothDialog;
+	}
+	
+	public SellDialog getSellDialog() {
+		return sellDialog;
 	}
 
 	public void addUser(User user){
@@ -121,4 +131,10 @@ public class MainFrame extends JFrame implements ModelListener{
 	public void ModifyCloth(Cloth cloth) {
 		inStock.modifyCloth(cloth);
 	}
+
+	public void sell(Cloth cloth, int amount) {
+		inStock.modifyCloth(cloth);
+	}
+
+	public void loadSellClothes(ArrayList<ClothSold> clothSold) {}
 }

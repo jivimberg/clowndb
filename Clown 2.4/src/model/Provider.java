@@ -23,4 +23,8 @@ public class Provider{
 		element.setAttribute("Nombre", name);
 		return element;
 	}
+	
+	public String toString(){
+		return name;
+	}
 }

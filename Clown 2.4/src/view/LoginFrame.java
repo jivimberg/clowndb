@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.Cloth;
+import model.ClothSold;
 import model.ModelListener;
 import model.Provider;
 import model.User;
@@ -94,4 +95,8 @@ public class LoginFrame extends JFrame implements ModelListener{
 	public void removeProvider(Provider provider) {}
 
 	public void ModifyCloth(Cloth cloth) {}
+
+	public void sell(Cloth cloth, int amount) {}
+
+	public void loadSellClothes(ArrayList<ClothSold> clothSold) {}
 }

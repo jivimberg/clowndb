@@ -42,7 +42,6 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 				addComponents();
 			}		
 		}else{
-			System.out.println(path);
 			setDefaultPicture();
 		}
 	}
@@ -64,5 +63,4 @@ public class PreviewPanel extends JPanel implements ListSelectionListener{
 		photoLabel = new JLabel(photo);
 		addComponents();
 	}
-	
 }

@@ -33,6 +33,8 @@ public class MyMenuBar extends JMenuBar {
 		/*----EDITAR----*/
 		edit = new JMenu("Editar");
 		add(edit);
+		edit.add(am.getSell());
+		edit.add(am.getShowSellDialog());
 		edit.add(am.getShowChangePasswordDialog());
 		if(user.getType().equals(UserType.ADMIN)){
 			file.add(am.getRemoveItem());

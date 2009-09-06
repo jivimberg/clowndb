@@ -1,13 +1,5 @@
 package model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
-
 import org.jdom.Element;
 
 import enums.ClothColor;
@@ -144,8 +136,6 @@ public class Cloth{
 		
 	public Element toXML(){
 		Element element = new Element("Cloth");
-		Date date = new Date();
-		element.setAttribute("Fecha", date.toString());
 		element.setAttribute("Código", code);
 		element.setAttribute("Descripción", description);
 		element.setAttribute("Color", color.toString());
@@ -168,27 +158,7 @@ public class Cloth{
 	}
 
 	public void setImage(String imagePath) {
-		File f2 = new File("src/Images/Products/" + code + ".jpg");
-		File f1 = new File(imagePath);
-		
-		if(f1.exists()){
-			try {				
-				InputStream in = new FileInputStream(f1);
-				OutputStream out = new FileOutputStream(f2); 
-				
-				int c;
-			    while ((c = in.read()) != -1){
-			      out.write(c);
-			    }
-			    in.close();
-			    out.close();
-			    
-			    this.imagePath = "src/Images/Products/" + code + ".jpg";
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}		
+		this.imagePath = imagePath;
 	}
 
 	public String getImagePath() {

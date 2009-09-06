@@ -24,6 +24,7 @@ public class AddProvider extends GenericAction {
 			for(Provider auxProvider : model.getProviders()){
 				if(auxProvider.getName().equalsIgnoreCase(providerName)){
 					JOptionPane.showMessageDialog(null,"El proveedor que desea crear ya existe"," Error!",JOptionPane.ERROR_MESSAGE);
+					return;
 				}
 			}
 			Provider provider = new Provider(providerName);
