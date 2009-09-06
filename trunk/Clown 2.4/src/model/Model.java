@@ -26,14 +26,14 @@ public class Model{
 	private ArrayList<Provider> providers;
 	private User activeUser;
 	private ArrayList<ModelListener> listeners;
-	private ArrayList<Cloth> sold;
+	private ArrayList<ClothSold> sold;
 
 	public Model(){
 		this.users = new ArrayList<User>();
 		this.providers = new ArrayList<Provider>();
 		this.listeners = new ArrayList<ModelListener>();
 		this.clothes = new ArrayList<Cloth>();
-		this.sold = new ArrayList<Cloth>();
+		this.sold = new ArrayList<ClothSold>();
 	}
 	
 	public ArrayList<User> getUsers() {
@@ -50,6 +50,14 @@ public class Model{
 
 	public void setClothes(ArrayList<Cloth> clothes) {
 		this.clothes = clothes;
+	}
+	
+	public ArrayList<ClothSold> getSold() {
+		return sold;
+	}
+
+	public void setSold(ArrayList<ClothSold> sold) {
+		this.sold = sold;
 	}
 
 	public User getActiveUser() {
@@ -85,25 +93,16 @@ public class Model{
 	
 	public void loadClothDatabase() {
 		File database = new File("Productos.xml");
+		providersToRAM();
+		soldClothesToRAM();
 		if(!database.exists()){
 			try {
 				database.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			removeImages();
 		}else{
 			clothesToRAM();
-		}
-		
-	}
-
-	private void removeImages() {
-		File folder = new File ("/Images/Products");
-		
-		File[] files = folder.listFiles();
-		for (File file : files) {
-			file.delete();
 		}
 	}
 
@@ -153,19 +152,8 @@ public class Model{
 		for(ModelListener listener : listeners){
 			listener.removeCloth(cloth);
 		}
-		persistClothes();
 	}
-	
-	public void removeItem(List<Cloth> selectedClothes) {
-		for (Cloth cloth : selectedClothes) {
-			if(cloth.getImagePath() != null){
-				File f = new File(cloth.getImagePath());
-				f.delete();
-			}
-			removeItem(cloth);
-		}
-	}
-	
+		
 	public void addProvider(Provider provider) {
 		providers.add(provider);
 		persistProviders();
@@ -175,8 +163,16 @@ public class Model{
 	}
 	
 	public void removeProvider(Provider provider){
+		for(int i = clothes.size()-1; i >= 0; i--){
+			Cloth cloth = clothes.get(i);
+			if(cloth.getProvider().getName().equalsIgnoreCase(provider.getName())){
+				removeItem(cloth);
+			}
+		}
+		
 		providers.remove(provider);
 		persistProviders();
+		
 		for(ModelListener ml : this.listeners){
 			ml.removeProvider(provider);
 		}
@@ -209,8 +205,7 @@ public class Model{
 		}catch(IOException e){
 			e.getStackTrace();
 
-		}
-		
+		}	
 	}
 	
 	public void persistClothes() {
@@ -220,9 +215,25 @@ public class Model{
 			out.output(doc, new FileOutputStream ("Productos.xml"));
 		}catch(IOException e){
 			e.getStackTrace();
-
 		}
-		
+	}
+	
+	public void persistSold() {
+		try{
+			Document doc = new Document (soldToXML());
+			XMLOutputter out= new XMLOutputter();
+			out.output(doc, new FileOutputStream ("Vendidos.xml"));
+		}catch(IOException e){
+			
+		}
+	}
+	
+	private Element soldToXML(){
+		Element element = new Element("Vendidos");
+		for(ClothSold cloth : sold){
+			element.addContent(cloth.toXML());
+		}
+		return element;
 	}
 
 	private Element clothesToXML() {
@@ -307,30 +318,24 @@ public class Model{
 
 	private void clothesToRAM() {
 		SAXBuilder file = new SAXBuilder();
-		providersToRAM();
 		try {
 			Document doc = file.build (new FileInputStream ("Productos.xml"));
 			Element clothesElement = doc.getRootElement();
 			List<Element> elements = new ArrayList<Element>(clothesElement.getChildren());
 			for(Element element : elements){
-				String code = element.getAttributeValue("Código");
-				String description = element.getAttributeValue("Descripción");
-				ClothColor color = ClothColor.valueOf(element.getAttributeValue("Color"));
-				String size = element.getAttributeValue("Tamaño");
-				Double wholesalePrice = Double.parseDouble(element.getAttributeValue("PrecioM"));
-				Double retailPrice = Double.parseDouble(element.getAttributeValue("Preciom"));
-				Integer year = Integer.parseInt(element.getAttributeValue("Año"));
-				Sex sex = Sex.valueOf(element.getAttributeValue("Sexo"));
-				Double cost = Double.parseDouble(element.getAttributeValue("Costo"));
-				Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
-				Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
-				String imagePath = element.getAttributeValue("ImagePath");
-				List<Element> listOfElements = new ArrayList<Element>(element.getChildren());
-				Provider provider = getProvider(listOfElements.get(0));
+				Cloth cloth = getClothFromElement(element, true);
 				
-				Cloth cloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
+				String imagePath = cloth.getImagePath();
+				
 				if(!imagePath.equals("null")){
-					cloth.setImage(imagePath);
+					File imageFile = new File(imagePath);
+					if(imageFile.exists()){
+						cloth.setImage(imagePath);
+					}else{
+						cloth.setImage(null);
+					}	
+				}else{
+					cloth.setImage(null);
 				}
 				clothes.add(cloth);
 			}
@@ -338,12 +343,65 @@ public class Model{
 				listener.loadClothes(clothes);
 			}
 		}catch (Exception exc){
-			//System.out.println("Exception!");
-			//exc.printStackTrace();
+			exc.printStackTrace();
+		}
+	}
+	
+	private void soldClothesToRAM() {
+		SAXBuilder file = new SAXBuilder();
+		try {
+			Document doc = file.build (new FileInputStream ("Vendidos.xml"));
+			Element clothesElement = doc.getRootElement();
+			List<Element> elements = new ArrayList<Element>(clothesElement.getChildren());
+			for(Element element : elements){
+				String date = element.getAttributeValue("Date");
+				Cloth cloth = getClothFromElement((Element)element.getChildren().get(0), false);
+				
+				String imagePath = cloth.getImagePath();
+				if(!imagePath.equals("null")){
+					File imageFile = new File(imagePath);
+					if(imageFile.exists()){
+						cloth.setImage(imagePath);
+					}else{
+						cloth.setImage(null);
+					}
+				}
+				ClothSold sold = new ClothSold(cloth, date);
+				this.sold.add(sold);
+			}
+			for(ModelListener listener : listeners){
+				listener.loadSellClothes(sold);
+			}
+		}catch (Exception exc){}
+	}
+	
+	private Cloth getClothFromElement(Element element, boolean sellCloth){
+		String code = element.getAttributeValue("Código");
+		String description = element.getAttributeValue("Descripción");
+		ClothColor color = ClothColor.valueOf(element.getAttributeValue("Color"));
+		String size = element.getAttributeValue("Tamaño");
+		Double wholesalePrice = Double.parseDouble(element.getAttributeValue("PrecioM"));
+		Double retailPrice = Double.parseDouble(element.getAttributeValue("Preciom"));
+		Integer year = Integer.parseInt(element.getAttributeValue("Año"));
+		Sex sex = Sex.valueOf(element.getAttributeValue("Sexo"));
+		Double cost = Double.parseDouble(element.getAttributeValue("Costo"));
+		Integer amount = Integer.parseInt(element.getAttributeValue("Cantidad"));
+		Seasson seasson = Seasson.valueOf(element.getAttributeValue("Temporada"));
+		String imagePath = element.getAttributeValue("ImagePath");
+		Provider provider;
+		if(sellCloth){
+			List<Element> listOfElements = new ArrayList<Element>(element.getChildren());
+			provider = getProvider(listOfElements.get(0));
+		}else{
+			provider = null;
 		}
 		
+		Cloth cloth = new Cloth(code, description, color, size, cost, wholesalePrice, retailPrice, sex, seasson, year, amount, provider);
+		cloth.setImage(imagePath);
+		return cloth; 
+		
 	}
-
+		
 	private void providersToRAM() {
 		SAXBuilder file = new SAXBuilder();
 		try {
@@ -402,19 +460,13 @@ public class Model{
 		persistUsers();
 	}
 
-	public void sell(List<Cloth> selectedClothes) {
-		for (Cloth cloth : selectedClothes) {
-			sell(cloth);
+	public void sell(int index, Cloth cloth, int amount){
+		sold.add(new ClothSold(cloth, amount));
+		clothes.get(index).setAmount((int)clothes.get(index).getAmount()-amount);
+		for(ModelListener listener : listeners){
+			listener.sell(cloth, amount);
 		}
-		
-	}
-
-	private void sell(Cloth cloth) {
-		sold.add(cloth);
-		removeItem(cloth);
-//		for(ModelListener listener : listeners){
-//			listener.removeCloth(newCloth);
-//		}
-//		persistSold();
+		persistClothes();
+		persistSold();
 	}
 }

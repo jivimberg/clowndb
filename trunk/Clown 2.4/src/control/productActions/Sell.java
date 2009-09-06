@@ -1,16 +1,14 @@
 package control.productActions;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
-
-import control.ActionManager;
-import control.GenericAction;
+import javax.swing.JOptionPane;
 
 import model.Cloth;
 import model.Model;
+import control.ActionManager;
+import control.GenericAction;
 
 public class Sell extends GenericAction {
 
@@ -22,11 +20,29 @@ public class Sell extends GenericAction {
 		this.am = am;
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		List<Cloth> selectedClothes = am.getMainFrame().getResult().getSelectedObjects();
-		if(!selectedClothes.isEmpty()){
-			model.sell(selectedClothes);
+	public void actionPerformed(ActionEvent arg0){
+		int index = am.getMainFrame().getResult().getSelectedRow();
+		if(index == -1){
+			JOptionPane.showMessageDialog(null,"No ha seleccionado ningun producto."," Error!",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		Cloth cloth = am.getMainFrame().getResult().getItem(index);		
+		String amountS = optionPane("Producto: " + cloth.getCode() +
+				"\n(max " + cloth.getAmount() + ")\n Cantidad a vender:", "Vender Producto");
+
+		int amount;
+		if(amountS != null){
+			try{
+				amount = Integer.parseInt(amountS);
+			}catch(NumberFormatException e){
+				JOptionPane.showMessageDialog(null,"No se ha ingresado una cantidad válida"," Error!",JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			if(amount > cloth.getAmount()){
+				JOptionPane.showMessageDialog(null,"La cantidad ingresada es mayor al maximo permitido."," Error!",JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			model.sell(index, cloth, amount);
 		}
 	}
-
 }

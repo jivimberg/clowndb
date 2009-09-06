@@ -23,7 +23,7 @@ public class ShowModifyItemDialog extends GenericAction {
 	public void actionPerformed(ActionEvent arg0) {
 		int index = am.getMainFrame().getResult().getSelectedRow();
 		if(index == -1){
-			JOptionPane.showMessageDialog(null,"No ha seleccionado ningun producto a modificar"," Error!",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"No ha seleccionado ningun producto."," Error!",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		Cloth cloth = am.getMainFrame().getResult().getItem(index);

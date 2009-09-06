@@ -13,7 +13,6 @@ public class MyToolBar extends JToolBar {
 	private ActionManager am;
 	
 	public MyToolBar(ActionManager am){
-		super();
 		this.am = am;
 	}
 
@@ -24,12 +23,18 @@ public class MyToolBar extends JToolBar {
 		product.setText(product.getText());
 		add(product);
 		
-		// Agregar proveedor
+		// Detalles Producto
+		JButton detailProduct = new JButton();
+		detailProduct.setAction(am.getShowModifyItemDialog());
+		detailProduct.setText(detailProduct.getText());
+		add(detailProduct);
 		
-		/*JButton provider = new JButton();
-		provider.setAction(am.getAddProvider());
-		provider.setText(provider.getText());
-		add(provider);*/
+		// Detalles Producto
+		JButton sellProduct = new JButton();
+		sellProduct.setAction(am.getSell());
+		sellProduct.setText(sellProduct.getText());
+		add(sellProduct);
+		
 		setFloatable(false);
 	}
 }

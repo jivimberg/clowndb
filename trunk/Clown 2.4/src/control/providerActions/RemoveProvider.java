@@ -27,7 +27,7 @@ public class RemoveProvider extends GenericAction {
 					"Remover Proveedor", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			Provider provider = (Provider) JOptionPane.showInputDialog(null,
-					"Seleccione el proveedor que desea remover ",
+					"Seleccione el proveedor que desea remover\nCUIDADO!Perdera todos los productos vigentes del proveedor ",
 					"Eliminar proveedor", JOptionPane.PLAIN_MESSAGE, null,
 					possibilities, possibilities[0]);
 			if (provider != null) {

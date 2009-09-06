@@ -65,7 +65,7 @@ public class ResultTable extends JTable {
 	}
 
 	public void remove(Cloth cloth) {
-		for (int i = 0; i < tableModel.getRowCount(); i++) {
+		for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 			if(cloth.getCode().equalsIgnoreCase((String) tableModel.getValueAt(i, 1))){
 				tableModel.removeRow(i);
 				break;
@@ -84,8 +84,8 @@ public class ResultTable extends JTable {
 	public void modifyCloth(Cloth cloth) {
 		empty();
 		addResult(clothes);
-	}	
-	
+	}
+
 	class MyDefaultTableModel extends DefaultTableModel{
 		public MyDefaultTableModel() {  
 			super();  

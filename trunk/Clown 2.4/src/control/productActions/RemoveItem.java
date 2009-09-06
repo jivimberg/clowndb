@@ -23,13 +23,13 @@ public class RemoveItem extends GenericAction {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		List<Cloth> selectedClothes = am.getMainFrame().getResult().getSelectedObjects();
-		if(!selectedClothes.isEmpty()){
-			model.removeItem(selectedClothes);
-		}else{
-			JOptionPane.showMessageDialog(null,"No ha seleccionado nada para eliminar"," Error!",JOptionPane.ERROR_MESSAGE);
+		int index = am.getMainFrame().getResult().getSelectedRow();
+		if(index == -1){
+			JOptionPane.showMessageDialog(null,"No ha seleccionado ningun producto."," Error!",JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		Cloth cloth = am.getMainFrame().getResult().getItem(index);
+		model.removeItem(cloth);
 
 	}
 
