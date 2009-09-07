@@ -73,7 +73,7 @@ public class AddClothDialog extends JDialog{
 		color = new JComboBox(ClothColor.values());
 		panel1.add(color);
 		
-		panel1.add(new JLabel("  Tamaño:"));
+		panel1.add(new JLabel("  Talle:"));
 		size = new JTextField(20);
 		panel1.add(size);
 		size.setAction(am.getAddItem(this));

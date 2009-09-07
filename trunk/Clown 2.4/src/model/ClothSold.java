@@ -12,7 +12,7 @@ public class ClothSold {
 	@SuppressWarnings("deprecation")
 	public ClothSold(Cloth sold, int amount) {
 		Date auxDate = new Date();
-		date = auxDate.getDate() + "/" + auxDate.getMonth() + "/" + (auxDate.getYear() + 1900);
+		date = auxDate.getDate() + "/" + (auxDate.getMonth()+1) + "/" + (auxDate.getYear() + 1900);
 		this.sold = new Cloth(sold.getCode(), sold.getDescription(), sold.getColor(), sold.getSize(), sold.getCost(), 
 				sold.getWholesalePrice(), sold.getRetailPrice(), sold.getSex(), sold.getSeasson(), sold.getYear(), amount, null);
 	}
