@@ -1,24 +1,7 @@
 To Do
 
-//El número indica niveles de prioridad
-
-OK 1* Venta
-1* Cuadro de referencias
-OK 1* Terminar ABM Producto (reducir cantidad)
-OK 2* Foto
-OK 2* Campos obligatorios (supongo que se refiere a la alta de items)
-OK 2* Exportar a Excel
-2* BD Backup
-
-Revisar:
-
-ARREGLADO // No se guarda el nombre del proveedor en el xml del producto
-ARREGLADO // Duplicados al agregar
-ARREGLADO // Tabla editable
-ARREGLADO // label de imagepath
-ARREGLADO // Borrar todas las imagenes si no hay productos
-//Boton derecho sobre productos
-ARREGLADO //Modificar el remove para que al borrar se borre también la imagen de la carpeta productos
-//Login focus en el password
-
-//LA REUTILIZACIÓN DE CÓDIGO QUE HAY CON EL MODIFYCLOTHDIALOG ES TERRIBLE!!!
+// Crear Cuenta administrador
+// Vender 1 por defualt
+// Desactivar el importar
+// Mejorar el exportar
+// Click Derecho
