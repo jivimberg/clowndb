@@ -27,7 +27,7 @@ public class Sell extends GenericAction {
 			return;
 		}
 		Cloth cloth = am.getMainFrame().getResult().getItem(index);		
-		String amountS = optionPane("Producto: " + cloth.getCode() +
+		String amountS = sellPane("Producto: " + cloth.getCode() +
 				"\n(max " + cloth.getAmount() + ")\n Cantidad a vender:", "Vender Producto");
 
 		int amount;
@@ -42,7 +42,33 @@ public class Sell extends GenericAction {
 				JOptionPane.showMessageDialog(null,"La cantidad ingresada es mayor al maximo permitido."," Error!",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			
+			if(amountS == "1")
+				JOptionPane.showMessageDialog(null,"Se ha vendido una unidad del producto: " + cloth.getCode(),
+						" Producto Vendido",JOptionPane.INFORMATION_MESSAGE);
+			else
+				JOptionPane.showMessageDialog(null,"Se han vendido " + amountS + "  unidades del producto: " + cloth.getCode(),
+						" Producto Vendido",JOptionPane.INFORMATION_MESSAGE);
+				
 			model.sell(index, cloth, amount);
 		}
+	}
+	
+	private String sellPane(String frase, String titulo){
+		String texto = (String) JOptionPane.showInputDialog(null, frase, titulo, JOptionPane.QUESTION_MESSAGE, null, null, 1);
+		int cantidadDeLetras;
+		try{
+			cantidadDeLetras = texto.length();
+		}catch(NullPointerException e){
+			cantidadDeLetras = -1;
+		}
+		if(cantidadDeLetras >=1){
+			return texto;
+		}
+		if(cantidadDeLetras == 0){
+			JOptionPane.showMessageDialog(null,"No ha ingresado un valor valido"," Error!",JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+		return null;
 	}
 }

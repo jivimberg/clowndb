@@ -41,11 +41,12 @@ public class MyMenuBar extends JMenuBar {
 			
 			file.addSeparator();
 			file.add(am.getAddUser());
+			file.add(am.getAddAdmin());
 			file.add(am.getRemoveUser());
 			
 			edit.addSeparator();
 			edit.add(am.getProductsToXLS());
-			edit.add(am.getProductsFromXLS());
+			//edit.add(am.getProductsFromXLS());
 		}
 		file.addSeparator();
 		file.add(am.getAddProvider());

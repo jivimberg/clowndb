@@ -312,7 +312,7 @@ public class Model{
 				users.add(user);
 			}
 		}catch (Exception exc){
-			exc.printStackTrace();
+			//exc.printStackTrace();
 		}
 	}
 
@@ -343,7 +343,7 @@ public class Model{
 				listener.loadClothes(clothes);
 			}
 		}catch (Exception exc){
-			exc.printStackTrace();
+			//exc.printStackTrace();
 		}
 	}
 	
@@ -417,7 +417,7 @@ public class Model{
 				}
 			}
 		}catch (Exception exc){
-			exc.printStackTrace();
+			//exc.printStackTrace();
 		}
 	}
 

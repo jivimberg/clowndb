@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Productos><Cloth Código="1" Descripción="1" Color="Rojo" Tamaño="1" Costo="1.0" PrecioM="1.0" Preciom="1.0" Año="2008" Sexo="Varon" Cantidad="0" Temporada="Invierno" ImagePath="null"><Provider Nombre="jivi" /></Cloth><Cloth Código="34" Descripción="34" Color="Rojo" Tamaño="34" Costo="3.0" PrecioM="43.0" Preciom="4.0" Año="2008" Sexo="Varon" Cantidad="4" Temporada="Invierno" ImagePath="null"><Provider Nombre="jivi" /></Cloth></Productos>

@@ -31,6 +31,7 @@ import control.userActions.CheckLogin;
 import control.userActions.RemoveUser;
 import control.userActions.ShowChangePasswordDialog;
 import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
+import enums.UserType;
 
 public class ActionManager {
 
@@ -47,6 +48,7 @@ public class ActionManager {
 	private AbstractAction addProvider;
 	private AbstractAction removeProvider;
 	private AbstractAction addUser;
+	private AbstractAction addAdmin;
 	private AbstractAction removeUser;
 	private AbstractAction showChangePasswordDialog;
 	private ChangePassword changePassword;
@@ -54,7 +56,7 @@ public class ActionManager {
 	private AbstractAction sellSearch;
 	private AbstractAction sell;
 	private AbstractAction productsToXLS;
-	private AbstractAction productsFromXLS;
+	//private AbstractAction productsFromXLS;
 	
 	public ActionManager() {
 		this.model = new Model();
@@ -136,9 +138,17 @@ public class ActionManager {
 	public Action getAddUser() {
 		if(addUser == null){
 			addUser = new AddUser("Agregar Usuario ", new ImageIcon(getClass().getResource("/Images/add User.png")), 
-					"Agregar Usuario", 0, model);
+					"Agregar Usuario", 0, model, UserType.COMMON_USER);
 		}
 		return addUser;
+	}
+	
+	public Action getAddAdmin() {
+		if(addAdmin == null){
+			addAdmin = new AddUser("Agregar Administrador ", new ImageIcon(getClass().getResource("/Images/add User.png")), 
+					"Agregar Usuario", 0, model, UserType.ADMIN);
+		}
+		return addAdmin;
 	}
 	
 	public Action getRemoveUser() {
@@ -206,13 +216,13 @@ public class ActionManager {
 		return productsToXLS;
 	}
 	
-	public Action getProductsFromXLS() {
-		if(productsFromXLS == null){
-			productsFromXLS = new ProductsFromXLS("Importar desde Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
-					"Importar desde Excel", 0, model, this);
-		}
-		return productsFromXLS;
-	}
+//	public Action getProductsFromXLS() {
+//		if(productsFromXLS == null){
+//			productsFromXLS = new ProductsFromXLS("Importar desde Excel ", new ImageIcon(getClass().getResource("/Images/Excel.gif")), 
+//					"Importar desde Excel", 0, model, this);
+//		}
+//		return productsFromXLS;
+//	}
 	
 	public MainFrame getMainFrame() {
 		return mainFrame;
