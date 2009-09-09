@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,20 +10,25 @@ import javax.swing.JTable;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import control.ActionManager;
+
 import model.Cloth;
 
 @SuppressWarnings("serial")
-public class ResultTable extends JTable {
+public class ResultTable extends JTable implements MouseListener {
 
 	private MyDefaultTableModel tableModel;
 	private List<Cloth> clothes;
+	private PopupMenu popupMenu;
 	
-	public ResultTable(){
+	public ResultTable(ActionManager am){
 		tableModel = new MyDefaultTableModel();
 		String[] names = {"Nro. Articulo", "Código", "Descripcion", "Color", "Talle", "Costo", 
 				"Cantidad", "P. por mayor", "P. por menor", "Sexo", "Año"};
 		tableModel.setColumnIdentifiers(names);
 		setModel(tableModel);
+		popupMenu = new PopupMenu(am);
+		addMouseListener(this);
 		setSize(new Dimension(1500,400));
 	}
 	
@@ -94,5 +101,18 @@ public class ResultTable extends JTable {
 		public boolean isCellEditable(int row, int col) {  
 		   return false;  
 		}  
-	};  
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		if(e.getModifiers()== e.BUTTON3_MASK)
+			popupMenu.show(this, e.getX(), e.getY());
+	}
+
+	public void mouseEntered(MouseEvent arg0) {}
+
+	public void mouseExited(MouseEvent arg0) {}
+
+	public void mousePressed(MouseEvent arg0) {}
+
+	public void mouseReleased(MouseEvent arg0) {}
 }

@@ -47,7 +47,7 @@ public class MainFrame extends JFrame implements ModelListener{
 		searchBar = new SearchBar(am);
 		panel2.add(searchBar, BorderLayout.NORTH);
 		
-		inStock = new ResultTable();
+		inStock = new ResultTable(am);
 		JScrollPane scrollPane = new JScrollPane(inStock);
 		scrollPane.setBorder(new TitledBorder("Resultado"));
 		panel2.add(scrollPane);
