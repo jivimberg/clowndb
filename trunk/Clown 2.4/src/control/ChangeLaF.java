@@ -50,9 +50,14 @@ public class ChangeLaF extends GenericAction {
 		panel.add(laf);
 		
 		panel.add(new JButton(exit), BorderLayout.SOUTH);
+		
+		dialog.setSize(300, 160);
+		dialog.setLocationRelativeTo(null);
+		dialog.setResizable(false);
+		dialog.setVisible(true);
 	}
 	
-	private AbstractAction exit = new AbstractAction("Cancelar"){
+	private AbstractAction exit = new AbstractAction("Aceptar"){
 		public void actionPerformed(ActionEvent e){
 			selectedLaf = (Laf) laf.getSelectedItem();
 			try{
@@ -64,8 +69,8 @@ public class ChangeLaF extends GenericAction {
 						UIManager.setLookAndFeel(new SyntheticaBlackMoonLookAndFeel());
 				    	break;
 				}
-			}catch (Exception e) {
-		    	e.printStackTrace();
+			}catch (Exception exception) {
+		    	exception.printStackTrace();
 		    }	
 			dialog.dispose();
 		}

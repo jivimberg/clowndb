@@ -46,6 +46,7 @@ public class MyMenuBar extends JMenuBar {
 			
 			edit.addSeparator();
 			edit.add(am.getProductsToXLS());
+			//edit.add(am.getChangeLaF());
 			//edit.add(am.getProductsFromXLS());
 		}
 		file.addSeparator();
