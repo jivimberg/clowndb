@@ -56,7 +56,7 @@ public class ActionManager {
 	private AbstractAction sellSearch;
 	private AbstractAction sell;
 	private AbstractAction productsToXLS;
-	private AbstractAction changeLaF;
+	//private AbstractAction changeLaF;
 	//private AbstractAction productsFromXLS;
 	
 	public ActionManager() {
@@ -217,13 +217,13 @@ public class ActionManager {
 		return productsToXLS;
 	}
 	
-	public Action getChangeLaF() {
-		if(changeLaF == null){
-			changeLaF = new ChangeLaF("Cambiar Apariencia ", null, 
-					"Cambiar Apariencia", 0, model, this);
-		}
-		return changeLaF;
-	}
+//	public Action getChangeLaF() {
+//		if(changeLaF == null){
+//			changeLaF = new ChangeLaF("Cambiar Apariencia ", null, 
+//					"Cambiar Apariencia", 0, model, this);
+//		}
+//		return changeLaF;
+//	}
 	
 //	public Action getProductsFromXLS() {
 //		if(productsFromXLS == null){
