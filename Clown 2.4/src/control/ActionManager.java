@@ -14,7 +14,6 @@ import view.ModifyClothDialog;
 import view.SplashScreen;
 import control.productActions.AddItem;
 import control.productActions.ModifyItem;
-import control.productActions.ProductsFromXLS;
 import control.productActions.ProductsToXLS;
 import control.productActions.RemoveItem;
 import control.productActions.Search;
